@@ -1,0 +1,48 @@
+/* ══════════════════════════════════════════
+   LEAVE
+══════════════════════════════════════════ */
+.leave-card {
+  background: white;
+  padding: clamp(14px, 4vw, 20px);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  width: 100%;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #6366f1 #f1f5f9;
+}
+
+.leave-card::-webkit-scrollbar {
+  height: 5px;
+}
+
+.leave-card::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.leave-card::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 10px;
+}
+
+/* ── 260px - 320px ── */
+@media (min-width: 260px) and (max-width: 320px) {
+  .leave-card { padding: 10px; border-radius: 8px; }
+}
+
+/* ── 321px - 480px ── */
+@media (min-width: 321px) and (max-width: 480px) {
+  .leave-card { padding: 12px; }
+}
+
+/* ── 481px - 768px ── */
+@media (min-width: 481px) and (max-width: 768px) {
+  .leave-card { padding: 16px; }
+}
+
+/* ── 769px - 1024px ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .leave-card { padding: 18px; }
+}

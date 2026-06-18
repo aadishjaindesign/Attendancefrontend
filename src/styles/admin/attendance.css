@@ -1,0 +1,113 @@
+/* ══════════════════════════════════════════
+   ATTENDANCE CARD
+══════════════════════════════════════════ */
+.attendance-card {
+  background: white;
+  padding: clamp(14px, 4vw, 24px);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  width: 100%;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #6366f1 #f1f5f9;
+}
+
+.attendance-card::-webkit-scrollbar {
+  height: 5px;
+}
+
+.attendance-card::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.attendance-card::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 10px;
+}
+
+.present-status {
+  color: #22c55e;
+  font-weight: 600;
+  font-size: clamp(12px, 3vw, 14px);
+}
+
+.absent-status {
+  color: #ef4444;
+  font-weight: 600;
+  font-size: clamp(12px, 3vw, 14px);
+}
+
+/* ── 260px - 320px (ultra small) ── */
+@media (min-width: 260px) and (max-width: 320px) {
+  .attendance-card {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .present-status,
+  .absent-status {
+    font-size: 12px;
+  }
+}
+
+/* ── 321px - 480px (small mobile) ── */
+@media (min-width: 321px) and (max-width: 480px) {
+  .attendance-card {
+    padding: 12px;
+  }
+
+  .present-status,
+  .absent-status {
+    font-size: 12px;
+  }
+}
+
+/* ── 481px - 768px (large mobile / small tablet) ── */
+@media (min-width: 481px) and (max-width: 768px) {
+  .attendance-card {
+    padding: 16px;
+  }
+
+  .present-status,
+  .absent-status {
+    font-size: 13px;
+  }
+}
+
+/* ── 769px - 1024px (tablet) ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .attendance-card {
+    padding: 18px;
+  }
+
+  .present-status,
+  .absent-status {
+    font-size: 13px;
+  }
+}
+
+/* ── 1025px - 1280px (small desktop) ── */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .attendance-card {
+    padding: 20px;
+  }
+
+  .present-status,
+  .absent-status {
+    font-size: 14px;
+  }
+}
+
+/* ── 1281px - 1440px (large desktop) ── */
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .attendance-card {
+    padding: 24px;
+  }
+
+  .present-status,
+  .absent-status {
+    font-size: 14px;
+  }
+}

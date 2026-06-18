@@ -1,0 +1,89 @@
+/* ── Page title ── */
+.page-title {
+  margin-bottom: clamp(16px, 4vw, 28px);
+}
+
+.page-title h2 {
+  font-size: clamp(18px, 5vw, 26px);
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 4px;
+}
+
+.page-title p {
+  font-size: clamp(12px, 3vw, 14px);
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Profile card ── */
+.profile-card {
+  background: #ffffff;
+  padding: clamp(14px, 5vw, 28px);
+  border-radius: 16px;
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Grid — 2 col on wide, 1 col on small ── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(12px, 3vw, 20px);
+}
+
+/* ── Each field ── */
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: #f8fafc;
+  padding: clamp(12px, 3vw, 16px);
+  border-radius: 10px;
+  border: 0.5px solid rgba(0, 0, 0, 0.07);
+}
+
+.profile-item label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.profile-item span {
+  font-size: clamp(13px, 3.5vw, 16px);
+  font-weight: 600;
+  color: #0f172a;
+  word-break: break-word;
+}
+
+/* ── Status badges ── */
+.active-profile,
+.pending-profile {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: clamp(11px, 2.5vw, 12px);
+  font-weight: 500;
+  width: fit-content;
+}
+
+.active-profile {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.pending-profile {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* ── 260px ultra-small ── */
+@media (max-width: 320px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+} 

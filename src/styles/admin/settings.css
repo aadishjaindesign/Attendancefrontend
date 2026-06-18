@@ -1,0 +1,70 @@
+/* ══════════════════════════════════════════
+   SETTINGS
+══════════════════════════════════════════ */
+.settings-card {
+  background: white;
+  padding: clamp(16px, 4vw, 25px);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(12px, 3vw, 18px);
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: clamp(13px, 3vw, 15px);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: clamp(10px, 2.5vw, 12px);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: clamp(13px, 3vw, 14px);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.save-btn {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 20px);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: clamp(13px, 3vw, 14px);
+  font-weight: 500;
+}
+
+/* ── 260px - 320px ── */
+@media (min-width: 260px) and (max-width: 320px) {
+  .settings-card { padding: 10px; border-radius: 8px; }
+  .form-group label { font-size: 12px; }
+  .form-group input,
+  .form-group textarea { padding: 8px; font-size: 12px; }
+  .save-btn { width: 100%; font-size: 12px; padding: 9px; }
+}
+
+/* ── 321px - 480px ── */
+@media (min-width: 321px) and (max-width: 480px) {
+  .settings-card { padding: 14px; }
+  .save-btn { width: 100%; }
+}
+
+/* ── 481px - 768px ── */
+@media (min-width: 481px) and (max-width: 768px) {
+  .settings-card { padding: 18px; }
+}
+
+/* ── 769px - 1024px ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .settings-card { padding: 20px; }
+}

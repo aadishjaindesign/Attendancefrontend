@@ -1,0 +1,321 @@
+/* ============================
+   EMPLOYEE DASHBOARD - Fully Responsive
+   260px se sabhi devices ke liye
+   ============================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---- Base / Page ---- */
+
+.dashboard {
+  font-family: 'Inter', sans-serif;
+  background: #F8FAFC;
+  padding: 16px;
+  min-height: 100vh;
+}
+
+.page-title {
+  margin-bottom: 16px;
+}
+
+.page-title h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.page-title p {
+  font-size: 12px;
+  color: #64748B;
+  margin-top: 3px;
+}
+
+/* ---- Profile Summary ---- */
+
+.profile-summary {
+  display: grid;
+  grid-template-columns: 1fr;       /* 260px default: single column */
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.profile-box {
+  background: #ffffff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.profile-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.1);
+}
+
+.profile-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366F1, #818CF8);
+}
+
+.profile-box h4 {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 6px;
+}
+
+.profile-box p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1E293B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status badge */
+.active,
+.approved {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #DCFCE7;
+  color: #ffffff;
+}
+
+.active::before,
+.approved::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22C55E;
+  flex-shrink: 0;
+}
+
+.pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #FEF9C3;
+  color: #A16207;
+}
+
+.rejected,
+.inactive {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+/* ---- Stats Grid ---- */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* 260px default: 2 column */
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: #ffffff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+}
+
+.stat-card h4 {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 8px;
+}
+
+.stat-card h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.stat-card:nth-child(1) h2 { color: #6366F1; }
+.stat-card:nth-child(2) h2 { color: #F43F5E; }
+.stat-card:nth-child(3) h2 { color: #0EA5E9; }
+.stat-card:nth-child(4) h2 { color: #10B981; }
+
+/* ---- Attendance Table ---- */
+
+.table-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+
+.table-header {
+  padding: 14px 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.table-header h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  min-width: 320px;
+}
+
+thead tr {
+  border-bottom: 1px solid #F1F5F9;
+}
+
+th {
+  padding: 8px 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  text-align: left;
+  white-space: nowrap;
+}
+
+td {
+  padding: 12px 14px;
+  font-size: 12px;
+  color: #475569;
+  border-bottom: 1px solid #F8FAFC;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover td {
+  background: #F8FAFC;
+}
+
+.present {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 20px;
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+/* ============================
+   BREAKPOINTS
+   ============================ */
+
+/* 360px — Mobile */
+@media (min-width: 360px) {
+  .dashboard { padding: 16px; }
+  .profile-summary { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .page-title h2 { font-size: 16px; }
+}
+
+/* 480px — Large Mobile */
+@media (min-width: 480px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .stat-card h2 { font-size: 20px; }
+}
+
+/* 600px — Small Tablet */
+@media (min-width: 600px) {
+  .dashboard { padding: 20px; }
+  .profile-summary { grid-template-columns: repeat(4, 1fr); }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .page-title h2 { font-size: 18px; }
+  .page-title p { font-size: 13px; }
+  th { padding: 10px 16px; font-size: 11px; }
+  td { padding: 13px 16px; font-size: 13px; }
+  .stat-card h2 { font-size: 24px; }
+  .stat-card h4 { font-size: 11px; }
+  .profile-box h4 { font-size: 11px; }
+  .profile-box p { font-size: 14px; }
+}
+
+/* 768px — Tablet */
+@media (min-width: 768px) {
+  .dashboard { padding: 24px; }
+  .profile-summary { gap: 16px; margin-bottom: 20px; }
+  .stats-grid { gap: 16px; margin-bottom: 20px; }
+  .stat-card { padding: 18px 20px; }
+  .stat-card h2 { font-size: 28px; }
+  .profile-box { padding: 16px 20px; }
+  .table-header { padding: 16px 20px 0; }
+  .table-header h3 { font-size: 15px; }
+  th { padding: 10px 20px; }
+  td { padding: 14px 20px; font-size: 14px; }
+  .page-title h2 { font-size: 20px; }
+  .page-title p { font-size: 14px; }
+}
+
+/* 1024px — Desktop */
+@media (min-width: 1024px) {
+  .dashboard { padding: 28px 32px; }
+  .stat-card h2 { font-size: 30px; }
+  .page-title h2 { font-size: 22px; }
+  .profile-box p { font-size: 15px; }
+}
+
+/* 1280px — Large Desktop */
+@media (min-width: 1280px) {
+  .profile-summary { gap: 20px; }
+  .stats-grid { gap: 20px; }
+  .stat-card { padding: 20px 24px; }
+  .profile-box { padding: 18px 22px; }
+}

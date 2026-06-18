@@ -1,0 +1,265 @@
+/* ══════════════════════════════════════════
+   EMPLOYEE LAYOUT
+   260px → 1440px
+══════════════════════════════════════════ */
+
+/* ── Wrapper ── */
+.emp-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+  position: relative;
+}
+
+/* ══════════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════════ */
+.emp-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #111827;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.emp-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0;
+}
+
+.emp-logo {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Close button — sirf mobile pe dikhega */
+.emp-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.emp-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar ke andar jo Sidebar component hai
+   uska logo hide karo — hum upar wala use kar rahe hain */
+.emp-sidebar .sidebar-logo {
+  display: none;
+}
+
+/* ══════════════════════════════════════════
+   OVERLAY (mobile)
+══════════════════════════════════════════ */
+.emp-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+/* ══════════════════════════════════════════
+   MAIN AREA
+══════════════════════════════════════════ */
+.emp-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ── Header ── */
+.emp-header {
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: 12px;
+}
+
+/* Hamburger — desktop pe hidden */
+.emp-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.emp-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #111827;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.emp-panel-title {
+  font-size: clamp(14px, 3vw, 17px);
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+  flex: 1;
+}
+
+.emp-welcome {
+  font-size: clamp(12px, 2.5vw, 14px);
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* ── Content ── */
+.emp-content {
+  flex: 1;
+  padding: clamp(14px, 4vw, 28px);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — 260px → 1440px
+══════════════════════════════════════════ */
+
+/* ── Mobile: 260px - 768px ── */
+@media (max-width: 768px) {
+
+  /* Sidebar fixed position pe — overlay ke upar */
+  .emp-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    z-index: 100;
+    width: 260px;
+  }
+
+  /* Sidebar open hone pe */
+  .emp-sidebar--open {
+    transform: translateX(0);
+  }
+
+  /* Overlay dikhao */
+  .emp-overlay {
+    display: block;
+  }
+
+  /* Hamburger dikhao */
+  .emp-hamburger {
+    display: flex;
+  }
+
+  /* Close button dikhao */
+  .emp-close-btn {
+    display: block;
+  }
+
+  .emp-header {
+    padding: 0 16px;
+    height: 60px;
+  }
+
+  .emp-content {
+    padding: 14px;
+  }
+}
+
+/* ── Small mobile: 260px - 480px ── */
+@media (max-width: 480px) {
+  .emp-header {
+    padding: 0 12px;
+    height: 56px;
+  }
+
+  .emp-content {
+    padding: 12px;
+  }
+}
+
+/* ── Ultra small: 260px - 320px ── */
+@media (max-width: 320px) {
+  .emp-sidebar {
+    width: 240px;
+  }
+
+  .emp-header {
+    padding: 0 10px;
+    height: 52px;
+  }
+
+  .emp-content {
+    padding: 10px;
+  }
+
+  .emp-panel-title {
+    font-size: 13px;
+  }
+
+  .emp-welcome {
+    font-size: 11px;
+  }
+}
+
+/* ── Tablet: 769px - 1024px ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .emp-sidebar {
+    width: 220px;
+  }
+
+  .emp-header {
+    height: 65px;
+    padding: 0 20px;
+  }
+
+  .emp-content {
+    padding: 18px;
+  }
+}
+
+/* ── Small desktop: 1025px - 1280px ── */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .emp-sidebar {
+    width: 240px;
+  }
+
+  .emp-content {
+    padding: 24px;
+  }
+}
+
+/* ── Large desktop: 1281px - 1440px ── */
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .emp-sidebar {
+    width: 260px;
+  }
+
+  .emp-content {
+    padding: 28px;
+  }
+}

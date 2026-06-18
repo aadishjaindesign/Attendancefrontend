@@ -1,0 +1,108 @@
+/* ══════════════════════════════════════════
+   EMPLOYEE
+══════════════════════════════════════════ */
+.employee-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(8px, 2vw, 15px);
+  margin-bottom: clamp(14px, 3vw, 20px);
+}
+
+.employee-toolbar input,
+.employee-toolbar select {
+  height: 45px;
+  padding: 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: clamp(12px, 3vw, 14px);
+  box-sizing: border-box;
+}
+
+.employee-card {
+  background: white;
+  padding: clamp(14px, 4vw, 20px);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  width: 100%;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #6366f1 #f1f5f9;
+}
+
+.employee-card::-webkit-scrollbar {
+  height: 5px;
+}
+
+.employee-card::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.employee-card::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 10px;
+}
+
+.active-status {
+  color: #22c55e;
+  font-weight: 600;
+  font-size: clamp(12px, 3vw, 14px);
+}
+
+.inactive-status {
+  color: #ef4444;
+  font-weight: 600;
+  font-size: clamp(12px, 3vw, 14px);
+}
+
+.view-btn {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px);
+  border-radius: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: clamp(12px, 3vw, 14px);
+  font-weight: 500;
+}
+
+.edit-btn {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: clamp(12px, 3vw, 14px);
+  font-weight: 500;
+}
+
+/* ── 260px - 320px ── */
+@media (min-width: 260px) and (max-width: 320px) {
+  .employee-toolbar { flex-direction: column; }
+  .employee-toolbar input,
+  .employee-toolbar select { width: 100%; height: 40px; }
+  .view-btn, .edit-btn { padding: 7px 10px; font-size: 11px; }
+}
+
+/* ── 321px - 480px ── */
+@media (min-width: 321px) and (max-width: 480px) {
+  .employee-toolbar { flex-direction: column; }
+  .employee-toolbar input,
+  .employee-toolbar select { width: 100%; }
+  .view-btn, .edit-btn { padding: 8px 11px; font-size: 12px; }
+}
+
+/* ── 481px - 768px ── */
+@media (min-width: 481px) and (max-width: 768px) {
+  .employee-toolbar input,
+  .employee-toolbar select { height: 42px; }
+}
+
+/* ── 769px - 1024px ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .employee-toolbar input,
+  .employee-toolbar select { height: 44px; }
+}

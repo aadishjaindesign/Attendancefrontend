@@ -1,0 +1,133 @@
+.approval-card {
+  background: white;
+  padding: clamp(14px, 4vw, 24px);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+  width: 100%;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #6366f1 #f1f5f9;
+}
+
+.approval-card::-webkit-scrollbar {
+  height: 5px;
+}
+
+.approval-card::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.approval-card::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 10px;
+}
+
+.approve-btn {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: clamp(8px, 2.5vw, 10px) clamp(12px, 3vw, 15px);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: clamp(12px, 3vw, 14px);
+  font-weight: 500;
+}
+
+.reject-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: clamp(8px, 2.5vw, 10px) clamp(12px, 3vw, 15px);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: clamp(12px, 3vw, 14px);
+  font-weight: 500;
+}
+
+/* ── 260px - 320px (ultra small) ── */
+@media (min-width: 260px) and (max-width: 320px) {
+  .approval-card {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 8px;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}
+
+/* ── 321px - 480px (small mobile) ── */
+@media (min-width: 321px) and (max-width: 480px) {
+  .approval-card {
+    padding: 12px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 8px;
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}
+
+/* ── 481px - 768px (large mobile / small tablet) ── */
+@media (min-width: 481px) and (max-width: 768px) {
+  .approval-card {
+    padding: 16px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    font-size: 13px;
+    padding: 9px 13px;
+  }
+}
+
+/* ── 769px - 1024px (tablet) ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .approval-card {
+    padding: 18px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+}
+
+/* ── 1025px - 1280px (small desktop) ── */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .approval-card {
+    padding: 20px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+
+/* ── 1281px - 1440px (large desktop) ── */
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .approval-card {
+    padding: 24px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
