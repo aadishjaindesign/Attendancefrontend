@@ -8,20 +8,26 @@ const navigate = useNavigate();
 
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
-const API_URL = "https://attendance-9zjv.onrender.com";
+
+// Render Backend
+const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
 const handleLogin = async (e) => {
 e.preventDefault();
 
 
 try {
+  console.log("Calling:", `${API_URL}/api/auth/login`);
+
   const res = await axios.post(
-  `${API_URL}/api/auth/login`,
-  {
-    email,
-    password,
-  }
-);
+    `${API_URL}/api/auth/login`,
+    {
+      email,
+      password,
+    }
+  );
+
+  console.log("Response:", res.data);
 
   localStorage.setItem("token", res.data.token);
   localStorage.setItem(
@@ -36,9 +42,13 @@ try {
   } else {
     navigate("/employee/dashboard");
   }
+
 } catch (err) {
+  console.log("FULL ERROR:", err);
+
   alert(
     err.response?.data?.message ||
+    err.message ||
     "Login Failed"
   );
 }
@@ -48,7 +58,7 @@ try {
 
 return ( <div className="auth-container"> <div className="auth-left"> <div className="auth-brand"> <h1>AttendPro</h1>
 
-```
+
       <p>
         Modern Employee Attendance Management System with
         Geo Location Tracking, Leave Management,
