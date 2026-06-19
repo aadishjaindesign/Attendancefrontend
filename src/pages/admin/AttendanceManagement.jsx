@@ -5,7 +5,7 @@ import "../../styles/admin/attendance.css";
 function AttendanceManagement() {
 
   const [records, setRecords] = useState([]);
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   useEffect(() => {
     fetchAttendance();

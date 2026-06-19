@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../styles/admin/dashboard.css";
 
 function Dashboard() {
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
   const [stats, setStats] = useState({
     totalEmployees: 0,
     pendingApprovals: 0,

@@ -5,7 +5,7 @@ import "../../styles/admin/approvals.css";
 function EmployeeApprovals() {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   const fetchEmployees = async () => {
     try {

@@ -6,7 +6,7 @@ function Employees() {
 
   const [employees, setEmployees] = useState([]);
   const [search, setSearch] = useState("");
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   useEffect(() => {
     fetchEmployees();

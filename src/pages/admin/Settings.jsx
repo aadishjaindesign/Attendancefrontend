@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../styles/admin/settings.css";
 
 function Settings() {
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   const [form, setForm] = useState({
     companyName: "",

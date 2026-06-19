@@ -11,7 +11,7 @@ function Reports() {
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(false);
   const [expandedEmp, setExpandedEmp] = useState(null);
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   useEffect(() => {
     fetchEmployees();
