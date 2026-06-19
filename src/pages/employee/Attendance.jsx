@@ -5,7 +5,7 @@ import "../../styles/employee/attendance.css";
 function Attendance() {
 
   const [today, setToday] = useState(null);
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   const user = JSON.parse(
     localStorage.getItem("user")

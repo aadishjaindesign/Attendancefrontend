@@ -5,7 +5,7 @@ import "../../styles/employee/history.css";
 function History() {
 
   const [records, setRecords] = useState([]);
-  const API_URL = "https://attendance-9zjv.onrender.com";
+  const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   const user = JSON.parse(
     localStorage.getItem("user")
