@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/employee/attendance.css";
+import { CheckCircle, XCircle } from "lucide-react";
 
 function Attendance() {
 
@@ -10,6 +11,8 @@ function Attendance() {
   const user = JSON.parse(
     localStorage.getItem("user")
   );
+  const isCheckedIn =
+    today?.checkIn && !today?.checkOut;
 
   useEffect(() => {
     loadAttendance();
@@ -18,9 +21,9 @@ function Attendance() {
   const loadAttendance = async () => {
     try {
 
-     const res = await axios.get(
-  `${API_URL}/api/attendance/${user._id}`
-);
+      const res = await axios.get(
+        `${API_URL}/api/attendance/${user._id}`
+      );
 
       if (res.data.length > 0) {
         setToday(res.data[0]);
@@ -38,7 +41,7 @@ function Attendance() {
         await getCurrentLocation();
 
       await axios.post(
-  `${API_URL}/api/attendance/checkin`,
+        `${API_URL}/api/attendance/checkin`,
         {
           employeeId: user._id,
           latitude: location.latitude,
@@ -64,7 +67,7 @@ function Attendance() {
     try {
 
       await axios.post(
-  `${API_URL}/api/attendance/checkout`,
+        `${API_URL}/api/attendance/checkout`,
         {
           employeeId: user._id,
         }
@@ -117,7 +120,7 @@ function Attendance() {
 
         <div className="attendance-status">
           <div className="status-left">
-            <span className="status-icon">🗓️</span>
+            <span className="status-icon"></span>
             <h3>Today's Status</h3>
           </div>
           <span className={`status-badge ${today?.status ? "status-" + today.status.toLowerCase() : "status-unmarked"}`}>
@@ -157,26 +160,21 @@ function Attendance() {
         <div className="attendance-actions">
 
           <button
-            className="checkin-btn"
+            className={`checkin-btn ${isCheckedIn ? "checked-in" : ""
+              }`}
             onClick={handleCheckIn}
+            disabled={isCheckedIn}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-              <polyline points="10 17 15 12 10 7" />
-              <line x1="15" y1="12" x2="3" y2="12" />
-            </svg>
-            Check In
+            {isCheckedIn
+              ? "Checked In"
+              : "Check In"}
           </button>
 
           <button
             className="checkout-btn"
             onClick={handleCheckOut}
+            disabled={!isCheckedIn}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-              <polyline points="16 17 21 12 16 7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
             Check Out
           </button>
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../../styles/admin/employees.css";
+import { CheckCircle, XCircle } from "lucide-react";
 
 function Employees() {
 
@@ -15,9 +16,9 @@ function Employees() {
   const fetchEmployees = async () => {
     try {
 
-     const res = await axios.get(
-  `${API_URL}/api/admin/employees`
-);
+      const res = await axios.get(
+        `${API_URL}/api/admin/employees`
+      );
 
       setEmployees(res.data);
 
@@ -98,14 +99,18 @@ function Employees() {
 
                   <td>{emp.email}</td>
 
-                  <td
-                    className={
-                      emp.status === "approved"
-                        ? "active-status"
-                        : "inactive-status"
-                    }
-                  >
-                    {emp.status}
+                  <td>
+                    {emp.status === "approved" ? (
+                      <span className="active-status">
+                        <CheckCircle size={16} />
+                        Approved
+                      </span>
+                    ) : (
+                      <span className="inactive-status">
+                        <XCircle size={16} />
+                        Pending
+                      </span>
+                    )}
                   </td>
 
                   <td>

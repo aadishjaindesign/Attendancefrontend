@@ -9,7 +9,6 @@ function EmployeeLayout() {
   return (
     <div className="emp-layout">
 
-      {/* Overlay — mobile pe sidebar ke peeche */}
       {isOpen && (
         <div
           className="emp-overlay"
@@ -17,11 +16,14 @@ function EmployeeLayout() {
         />
       )}
 
-      {/* Sidebar */}
-      <aside className={`emp-sidebar ${isOpen ? "emp-sidebar--open" : ""}`}>
-
+      <aside
+        className={`emp-sidebar ${
+          isOpen ? "emp-sidebar--open" : ""
+        }`}
+      >
         <div className="emp-sidebar-header">
           <h2 className="emp-logo">AttendPro</h2>
+
           <button
             className="emp-close-btn"
             onClick={() => setIsOpen(false)}
@@ -30,17 +32,15 @@ function EmployeeLayout() {
           </button>
         </div>
 
-        <Sidebar />
-
+        <Sidebar
+          closeSidebar={() => setIsOpen(false)}
+        />
       </aside>
 
-      {/* Main area */}
       <div className="emp-main">
 
-        {/* Header */}
         <header className="emp-header">
 
-          {/* Hamburger — sirf mobile pe */}
           <button
             className="emp-hamburger"
             onClick={() => setIsOpen(true)}
@@ -50,13 +50,16 @@ function EmployeeLayout() {
             <span />
           </button>
 
-          <h3 className="emp-panel-title">Employee Panel</h3>
+          <h3 className="emp-panel-title">
+            Employee Panel
+          </h3>
 
-          <span className="emp-welcome">Welcome, Employee</span>
+          <span className="emp-welcome">
+            Welcome, Employee
+          </span>
 
         </header>
 
-        {/* Page content */}
         <main className="emp-content">
           <Outlet />
         </main>

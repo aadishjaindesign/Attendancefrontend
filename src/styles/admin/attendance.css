@@ -1,59 +1,166 @@
 /* ══════════════════════════════════════════
    ATTENDANCE CARD
+   Modern White + Brand Red Theme
 ══════════════════════════════════════════ */
+
 .attendance-card {
-  background: white;
+  background: #ffffff;
+
+  border: 1px solid #f1d6d6;
+  border-radius: 14px;
+
   padding: clamp(14px, 4vw, 24px);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+
   overflow-x: auto;
   width: 100%;
   box-sizing: border-box;
+
   scrollbar-width: thin;
-  scrollbar-color: #6366f1 #f1f5f9;
+  scrollbar-color: #e31c1c #ffffff;
 }
+
+/* Scrollbar */
 
 .attendance-card::-webkit-scrollbar {
   height: 5px;
 }
 
 .attendance-card::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+  background: #ffffff;
 }
 
 .attendance-card::-webkit-scrollbar-thumb {
-  background: #6366f1;
+  background: #e31c1c;
   border-radius: 10px;
 }
 
-.present-status {
-  color: #22c55e;
-  font-weight: 600;
-  font-size: clamp(12px, 3vw, 14px);
+/* Table */
+
+.attendance-card table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  table-layout: auto;
 }
+
+/* Header */
+
+.attendance-card th {
+  padding: clamp(10px, 2.5vw, 14px);
+
+  text-align: left;
+  white-space: nowrap;
+
+  background: #fff5f5;
+
+  color: #e31c1c;
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  border-bottom: 1px solid #f1d6d6;
+}
+
+/* Table Data */
+
+.attendance-card td {
+  padding: clamp(10px, 2.5vw, 14px);
+
+  color: #333333;
+  font-size: clamp(12px, 3vw, 14px);
+
+  border-bottom: 1px solid #f5e2e2;
+
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.attendance-card tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.attendance-card tbody tr:hover td {
+  background: #fff8f8;
+}
+
+/* Present Status */
+
+.present-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ecfdf3;
+  color: #16a34a;
+
+  border: 1px solid #bbf7d0;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  min-width: 90px;
+  height: 34px;
+
+  white-space: nowrap;
+}
+
+/* Absent Status */
 
 .absent-status {
-  color: #ef4444;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fef2f2;
+  color: #dc2626;
+
+  border: 1px solid #fecaca;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
   font-weight: 600;
-  font-size: clamp(12px, 3vw, 14px);
+
+  min-width: 90px;
+  height: 34px;
+
+  white-space: nowrap;
+}
+.present-status,
+.absent-status {
+  gap: 6px;
 }
 
-/* ── 260px - 320px (ultra small) ── */
+/* ===== 260px - 320px ===== */
+
 @media (min-width: 260px) and (max-width: 320px) {
+
   .attendance-card {
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   .present-status,
   .absent-status {
-    font-size: 12px;
+    min-width: 75px;
+    height: 30px;
+    font-size: 11px;
+    padding: 4px 8px;
   }
 }
 
-/* ── 321px - 480px (small mobile) ── */
+/* ===== 321px - 480px ===== */
+
 @media (min-width: 321px) and (max-width: 480px) {
+
   .attendance-card {
     padding: 12px;
   }
@@ -64,8 +171,10 @@
   }
 }
 
-/* ── 481px - 768px (large mobile / small tablet) ── */
+/* ===== 481px - 768px ===== */
+
 @media (min-width: 481px) and (max-width: 768px) {
+
   .attendance-card {
     padding: 16px;
   }
@@ -76,38 +185,39 @@
   }
 }
 
-/* ── 769px - 1024px (tablet) ── */
+/* ===== 769px - 1024px ===== */
+
 @media (min-width: 769px) and (max-width: 1024px) {
+
   .attendance-card {
     padding: 18px;
   }
-
-  .present-status,
-  .absent-status {
-    font-size: 13px;
-  }
 }
 
-/* ── 1025px - 1280px (small desktop) ── */
+/* ===== 1025px - 1280px ===== */
+
 @media (min-width: 1025px) and (max-width: 1280px) {
+
   .attendance-card {
     padding: 20px;
   }
 
-  .present-status,
-  .absent-status {
-    font-size: 14px;
+  .attendance-card table {
+    min-width: unset;
+    width: 100%;
   }
 }
 
-/* ── 1281px - 1440px (large desktop) ── */
+/* ===== 1281px - 1440px ===== */
+
 @media (min-width: 1281px) and (max-width: 1440px) {
+
   .attendance-card {
     padding: 24px;
   }
 
-  .present-status,
-  .absent-status {
-    font-size: 14px;
+  .attendance-card table {
+    min-width: unset;
+    width: 100%;
   }
 }

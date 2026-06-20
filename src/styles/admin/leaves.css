@@ -1,30 +1,96 @@
 /* ══════════════════════════════════════════
-   LEAVE
+   LEAVE CARD
+   Theme: #FFE5BF + White Glassmorphism
+   Fix: Approved badge vertical alignment
 ══════════════════════════════════════════ */
 .leave-card {
-  background: white;
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   padding: clamp(14px, 4vw, 20px);
   border-radius: 12px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 16px rgba(16, 15, 14, 0.1);
   overflow-x: auto;
   width: 100%;
   box-sizing: border-box;
   scrollbar-width: thin;
-  scrollbar-color: #6366f1 #f1f5f9;
+  scrollbar-color: #000000 rgba(0, 0, 0, 0.2);
 }
 
-.leave-card::-webkit-scrollbar {
-  height: 5px;
+.leave-card::-webkit-scrollbar { height: 5px; }
+.leave-card::-webkit-scrollbar-track { background: rgba(255, 229, 191, 0.15); border-radius: 10px; }
+.leave-card::-webkit-scrollbar-thumb { background: #000000; border-radius: 10px; }
+
+.leave-card table {
+  width: 100%;
+  min-width: 580px;
+  border-collapse: collapse;
 }
 
-.leave-card::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+.leave-card th {
+  padding: clamp(10px, 2.5vw, 14px);
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.842);
+  border-bottom: 1px solid rgba(255, 229, 191, 0.4);
+  white-space: nowrap;
 }
 
-.leave-card::-webkit-scrollbar-thumb {
-  background: #6366f1;
-  border-radius: 10px;
+.leave-card td {
+  padding: clamp(10px, 2.5vw, 14px);
+  font-size: clamp(12px, 3vw, 14px);
+  color: #000000;
+  border-bottom: 1px solid rgba(255, 229, 191, 0.25);
+  /* Fix: vertical align badges */
+  vertical-align: middle;
+}
+
+.leave-card tbody tr:last-child td { border-bottom: none; }
+.leave-card tbody tr:hover td { background: rgba(255, 229, 191, 0.15); }
+
+/* Status badges — fixed alignment */
+.approved-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+  font-size: clamp(11px, 2.5vw, 13px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.rejected-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #000000;
+  color: #991b1b;
+  font-weight: 600;
+  font-size: clamp(11px, 2.5vw, 13px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.pending-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  color: #92400e;
+  font-weight: 600;
+  font-size: clamp(11px, 2.5vw, 13px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 /* ── 260px - 320px ── */
@@ -45,4 +111,10 @@
 /* ── 769px - 1024px ── */
 @media (min-width: 769px) and (max-width: 1024px) {
   .leave-card { padding: 18px; }
+  .leave-card table { min-width: unset; width: 100%; }
+}
+
+/* ── 1025px+ ── */
+@media (min-width: 1025px) {
+  .leave-card table { min-width: unset; width: 100%; }
 }

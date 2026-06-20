@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./sidebar.css";
 
-function Sidebar() {
+function Sidebar({ closeSidebar }) {
   return (
     <aside className="sidebar">
 
@@ -13,35 +13,50 @@ function Sidebar() {
 
         <NavLink
           to="/employee/dashboard"
-          className="menu-link"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
+          onClick={closeSidebar}
         >
           Dashboard
         </NavLink>
 
         <NavLink
           to="/employee/attendance"
-          className="menu-link"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
+          onClick={closeSidebar}
         >
           Attendance
         </NavLink>
 
         <NavLink
           to="/employee/history"
-          className="menu-link"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
+          onClick={closeSidebar}
         >
           History
         </NavLink>
 
         <NavLink
           to="/employee/leave"
-          className="menu-link"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
+          onClick={closeSidebar}
         >
           Leave
         </NavLink>
 
         <NavLink
           to="/employee/profile"
-          className="menu-link"
+          className={({ isActive }) =>
+            isActive ? "menu-link active" : "menu-link"
+          }
+          onClick={closeSidebar}
         >
           Profile
         </NavLink>

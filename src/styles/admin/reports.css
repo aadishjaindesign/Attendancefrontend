@@ -1,5 +1,7 @@
 /* ══════════════════════════════════════════
-   REPORTS PAGE — 260px → 1440px
+   REPORTS PAGE
+   Theme: #FFE5BF + White Glassmorphism
+   260px → 1440px
 ══════════════════════════════════════════ */
 .reports-page {
   width: 100%;
@@ -13,13 +15,13 @@
 .page-title h2 {
   font-size: clamp(18px, 5vw, 24px);
   font-weight: 600;
-  color: #0f172a;
+  color: #3d2800;
   margin: 0 0 4px;
 }
 
 .page-title p {
   font-size: clamp(12px, 3vw, 14px);
-  color: #64748b;
+  color: #000000;
   margin: 0;
 }
 
@@ -36,34 +38,37 @@
 .report-filters input[type="date"] {
   height: 42px;
   padding: 0 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(177, 177, 176, 0.6);
   border-radius: 8px;
   font-size: clamp(12px, 3vw, 14px);
-  color: #0f172a;
-  background: white;
+  color: #747474;
+  background: rgba(255, 255, 255, 0.7);
   outline: none;
   box-sizing: border-box;
 }
 
 .report-filters select:focus,
 .report-filters input[type="date"]:focus {
-  border-color: #6366f1;
+  /* border-color: #d97706; */
+  box-shadow: 0 0 0 2px rgba(255, 229, 191, 0.4);
 }
 
 .fetch-btn {
   height: 42px;
   padding: 0 clamp(16px, 4vw, 24px);
-  background: #6366f1;
-  color: white;
-  border: none;
+  /* background: linear-gradient(135deg, #FFE5BF 0%, #ffd499 100%); */
+  color: #3d2800;
+  border: 1px solid rgba(179, 176, 173, 0.4);
   border-radius: 8px;
   font-size: clamp(13px, 3vw, 14px);
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .fetch-btn:hover {
-  background: #4f46e5;
+  /* background: linear-gradient(135deg, #ffd499 0%, #ffbf6b 100%); */
+  /* box-shadow: 0 4px 12px rgba(255, 180, 80, 0.3); */
 }
 
 /* ── Loading / Empty ── */
@@ -71,24 +76,27 @@
 .report-empty {
   text-align: center;
   padding: 40px;
-  color: #94a3b8;
+  color: #7c5c3a;
   font-size: 14px;
-  background: white;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 229, 191, 0.5);
 }
 
 /* ── Employee report card ── */
 .emp-report-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 229, 191, 0.5);
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
   margin-bottom: clamp(10px, 3vw, 16px);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(255, 180, 80, 0.1);
 }
 
-/* ── Card header (click to expand) ── */
+/* ── Card header ── */
 .emp-report-header {
   display: flex;
   flex-wrap: wrap;
@@ -101,7 +109,7 @@
 }
 
 .emp-report-header:hover {
-  background: #f8fafc;
+  background: rgba(255, 229, 191, 0.15);
 }
 
 .emp-report-info {
@@ -114,12 +122,12 @@
 .emp-name {
   font-size: clamp(14px, 4vw, 16px);
   font-weight: 600;
-  color: #0f172a;
+  color: #3d2800;
 }
 
 .emp-dept {
   font-size: clamp(11px, 3vw, 13px);
-  color: #64748b;
+  color: #7c5c3a;
 }
 
 .emp-report-stats {
@@ -136,34 +144,37 @@
   font-size: clamp(11px, 2.5vw, 13px);
   font-weight: 500;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .stat-pill.green  { background: #dcfce7; color: #166534; }
-.stat-pill.blue   { background: #dbeafe; color: #1e40af; }
+.stat-pill.blue   { background: rgba(255, 229, 191, 0.5); color: #7c3d0a; }
 .stat-pill.orange { background: #ffedd5; color: #9a3412; }
 
 .expand-icon {
   font-size: 12px;
-  color: #94a3b8;
+  color: #7c5c3a;
   flex-shrink: 0;
 }
 
 /* ── Expanded detail ── */
 .emp-report-detail {
   padding: clamp(14px, 4vw, 20px);
-  border-top: 1px solid #f1f5f9;
-  background: #fafafa;
+  border-top: 1px solid rgba(255, 229, 191, 0.4);
+  background: rgba(255, 248, 240, 0.5);
 }
 
 .detail-heading {
   font-size: clamp(13px, 3vw, 15px);
   font-weight: 600;
-  color: #0f172a;
+  color: #3d2800;
   margin: 0 0 12px;
 }
 
 .no-data {
-  color: #94a3b8;
+  color: #7c5c3a;
   font-size: 13px;
   padding: 10px 0;
 }
@@ -172,24 +183,14 @@
 .detail-table-wrap {
   overflow-x: auto;
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 229, 191, 0.4);
   scrollbar-width: thin;
-  scrollbar-color: #6366f1 #f1f5f9;
+  scrollbar-color: #FFE5BF rgba(255, 229, 191, 0.2);
 }
 
-.detail-table-wrap::-webkit-scrollbar {
-  height: 5px;
-}
-
-.detail-table-wrap::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
-}
-
-.detail-table-wrap::-webkit-scrollbar-thumb {
-  background: #6366f1;
-  border-radius: 10px;
-}
+.detail-table-wrap::-webkit-scrollbar { height: 5px; }
+.detail-table-wrap::-webkit-scrollbar-track { background: rgba(255, 229, 191, 0.15); border-radius: 10px; }
+.detail-table-wrap::-webkit-scrollbar-thumb { background: #FFE5BF; border-radius: 10px; }
 
 .detail-table {
   width: 100%;
@@ -202,46 +203,41 @@
   text-align: left;
   font-size: 11px;
   font-weight: 600;
-  color: #94a3b8;
+  color: #7c5c3a;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background: #f8fafc;
+  background: rgba(255, 229, 191, 0.1);
   white-space: nowrap;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(255, 229, 191, 0.4);
 }
 
 .detail-table td {
   padding: clamp(10px, 2.5vw, 14px) clamp(10px, 3vw, 14px);
   font-size: clamp(12px, 3vw, 13px);
-  color: #334155;
-  border-bottom: 1px solid #f1f5f9;
+  color: #3d2800;
+  border-bottom: 1px solid rgba(255, 229, 191, 0.2);
   white-space: nowrap;
+  vertical-align: middle;
 }
 
-.detail-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.detail-table tbody tr:hover td {
-  background: #f8fafc;
-}
+.detail-table tbody tr:last-child td { border-bottom: none; }
+.detail-table tbody tr:hover td { background: rgba(255, 229, 191, 0.15); }
 
 /* ── Status badges ── */
 .status-badge {
-  display: inline-block;
-  padding: 3px 10px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 .status-present  { background: #dcfce7; color: #166534; }
 .status-absent   { background: #fee2e2; color: #991b1b; }
 .status-late     { background: #ffedd5; color: #9a3412; }
-
-.approved-status { background: #dcfce7; color: #166534; font-weight: 600; }
-.rejected-status { background: #fee2e2; color: #991b1b; font-weight: 600; }
-.pending-status  { background: #fef3c7; color: #92400e; font-weight: 600; }
 
 /* ── Responsive ── */
 @media (max-width: 480px) {

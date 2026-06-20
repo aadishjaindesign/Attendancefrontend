@@ -1,6 +1,10 @@
 /* ══════════════════════════════════════════
    EMPLOYEE
+   Modern White + Brand Red Theme
 ══════════════════════════════════════════ */
+
+/* Toolbar */
+
 .employee-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -12,97 +16,276 @@
 .employee-toolbar select {
   height: 45px;
   padding: 0 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+
+  background: #ffffff;
+  color: #333333;
+
+  border: 1px solid #f1d6d6;
+  border-radius: 10px;
+
   font-size: clamp(12px, 3vw, 14px);
+
   box-sizing: border-box;
+  outline: none;
+
+  transition: 0.25s ease;
 }
 
+.employee-toolbar input:focus,
+.employee-toolbar select:focus {
+  border-color: #e31c1c;
+  background: #fffdfd;
+}
+
+/* Employee Card */
+
 .employee-card {
-  background: white;
+  background: #ffffff;
+
+  border: 1px solid #f1d6d6;
+  border-radius: 14px;
+
   padding: clamp(14px, 4vw, 20px);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+
   overflow-x: auto;
   width: 100%;
   box-sizing: border-box;
+
   scrollbar-width: thin;
-  scrollbar-color: #6366f1 #f1f5f9;
+  scrollbar-color: #e31c1c #ffffff;
 }
+
+/* Scrollbar */
 
 .employee-card::-webkit-scrollbar {
   height: 5px;
 }
 
 .employee-card::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+  background: #ffffff;
 }
 
 .employee-card::-webkit-scrollbar-thumb {
-  background: #6366f1;
+  background: #e31c1c;
   border-radius: 10px;
 }
 
-.active-status {
-  color: #22c55e;
-  font-weight: 600;
-  font-size: clamp(12px, 3vw, 14px);
+/* Table */
+
+.employee-card table {
+  width: 100%;
+  min-width: 580px;
+  border-collapse: collapse;
 }
+
+/* Table Header */
+
+.employee-card th {
+  padding: clamp(10px, 2.5vw, 14px);
+
+  text-align: left;
+  white-space: nowrap;
+
+  background: #fff5f5;
+
+  color: #e31c1c;
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  border-bottom: 1px solid #f1d6d6;
+}
+
+/* Table Data */
+
+.employee-card td {
+  padding: clamp(10px, 2.5vw, 14px);
+
+  color: #333333;
+  font-size: clamp(12px, 3vw, 14px);
+
+  border-bottom: 1px solid #f5e2e2;
+
+  vertical-align: middle;
+}
+
+.employee-card tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.employee-card tbody tr:hover td {
+  background: #fff8f8;
+}
+
+/* Status */
+
+.active-status,
+.inactive-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 12px;
+
+  border-radius: 30px;
+
+  font-size: clamp(11px, 2.5vw, 13px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Active */
+
+.active-status {
+  background: #fff5f5;
+  color: #66c469;
+  border: 1px solid #ffd0d0;
+}
+
+/* Inactive */
 
 .inactive-status {
-  color: #ef4444;
-  font-weight: 600;
-  font-size: clamp(12px, 3vw, 14px);
+  background: #fafafa;
+  color: #777777;
+  border: 1px solid #e5e5e5;
 }
+
+/* View Button */
 
 .view-btn {
-  background: #6366f1;
-  color: white;
+  background: #e31c1c;
+  color: #ffffff;
+
   border: none;
-  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px);
   border-radius: 8px;
-  margin-right: 8px;
-  cursor: pointer;
+
+  padding: clamp(8px, 2vw, 10px)
+           clamp(14px, 3vw, 18px);
+
   font-size: clamp(12px, 3vw, 14px);
   font-weight: 500;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+
+  margin-right: 8px;
+
+  transition: 0.25s ease;
 }
+
+.view-btn:hover {
+  background: #c41717;
+}
+
+/* Edit Button */
 
 .edit-btn {
-  background: #f59e0b;
-  color: white;
-  border: none;
-  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px);
+  background: #ffffff;
+  color: #e31c1c;
+
+  border: 1px solid #e31c1c;
   border-radius: 8px;
-  cursor: pointer;
+
+  padding: clamp(8px, 2vw, 10px)
+           clamp(14px, 3vw, 18px);
+
   font-size: clamp(12px, 3vw, 14px);
   font-weight: 500;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+
+  transition: 0.25s ease;
 }
 
-/* ── 260px - 320px ── */
+.edit-btn:hover {
+  background: #fff5f5;
+}
+
+/* ===== 260px - 320px ===== */
+
 @media (min-width: 260px) and (max-width: 320px) {
-  .employee-toolbar { flex-direction: column; }
+
+  .employee-toolbar {
+    flex-direction: column;
+  }
+
   .employee-toolbar input,
-  .employee-toolbar select { width: 100%; height: 40px; }
-  .view-btn, .edit-btn { padding: 7px 10px; font-size: 11px; }
+  .employee-toolbar select {
+    width: 100%;
+    height: 40px;
+  }
+
+  .view-btn,
+  .edit-btn {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
 }
 
-/* ── 321px - 480px ── */
+/* ===== 321px - 480px ===== */
+
 @media (min-width: 321px) and (max-width: 480px) {
-  .employee-toolbar { flex-direction: column; }
+
+  .employee-toolbar {
+    flex-direction: column;
+  }
+
   .employee-toolbar input,
-  .employee-toolbar select { width: 100%; }
-  .view-btn, .edit-btn { padding: 8px 11px; font-size: 12px; }
+  .employee-toolbar select {
+    width: 100%;
+  }
+
+  .view-btn,
+  .edit-btn {
+    padding: 8px 11px;
+    font-size: 12px;
+  }
 }
 
-/* ── 481px - 768px ── */
+/* ===== 481px - 768px ===== */
+
 @media (min-width: 481px) and (max-width: 768px) {
+
   .employee-toolbar input,
-  .employee-toolbar select { height: 42px; }
+  .employee-toolbar select {
+    height: 42px;
+  }
 }
 
-/* ── 769px - 1024px ── */
+/* ===== 769px - 1024px ===== */
+
 @media (min-width: 769px) and (max-width: 1024px) {
+
   .employee-toolbar input,
-  .employee-toolbar select { height: 44px; }
+  .employee-toolbar select {
+    height: 44px;
+  }
+
+  .employee-card table {
+    min-width: unset;
+    width: 100%;
+  }
+}
+
+/* ===== 1025px+ ===== */
+
+@media (min-width: 1025px) {
+
+  .employee-card table {
+    min-width: unset;
+    width: 100%;
+  }
 }

@@ -1,10 +1,8 @@
-/* ══════════════════════════════════════════
-   HEADER — header.css
-══════════════════════════════════════════ */
 .header {
   height: 70px;
-  background: white;
-  border-bottom: 1px solid #e2e8f0;
+  background: #ffffff;
+  border-bottom: 1px solid #e31c1c;
+  box-shadow: 0 4px 20px #e31c1c;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,20 +13,12 @@
 .header-right {
   font-weight: 600;
   font-size: clamp(13px, 3vw, 15px);
+  color: #e31c1c;
 }
 
-/* Mobile */
 @media (max-width: 480px) {
-  .header {
-    padding: 0 14px;
-    height: 58px;
-  }
+  .header { padding: 0 14px; height: 58px; }
 }
-
-/* Ultra small */
 @media (max-width: 320px) {
-  .header {
-    padding: 0 10px;
-    height: 52px;
-  }
+  .header { padding: 0 10px; height: 52px; }
 }

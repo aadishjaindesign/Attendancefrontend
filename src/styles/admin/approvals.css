@@ -1,57 +1,155 @@
+/* ══════════════════════════════════════════
+   APPROVAL CARD
+   Modern White + Brand Red Theme
+══════════════════════════════════════════ */
+
 .approval-card {
-  background: white;
+  background: #ffffff;
+  border: 1px solid #f1d6d6;
+
   padding: clamp(14px, 4vw, 24px);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+  border-radius: 14px;
+
   overflow-x: auto;
   width: 100%;
   box-sizing: border-box;
+
   scrollbar-width: thin;
-  scrollbar-color: #6366f1 #f1f5f9;
+  scrollbar-color: #e31c1c #ffffff;
 }
+
+/* Scrollbar */
 
 .approval-card::-webkit-scrollbar {
   height: 5px;
 }
 
 .approval-card::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+  background: #ffffff;
 }
 
 .approval-card::-webkit-scrollbar-thumb {
-  background: #6366f1;
+  background: #e31c1c;
   border-radius: 10px;
 }
 
+/* Table */
+
+.approval-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Header */
+
+.approval-card th {
+  padding: clamp(10px, 2.5vw, 14px);
+
+  text-align: left;
+  white-space: nowrap;
+
+  background: #fff5f5;
+
+  color: #e31c1c;
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  border-bottom: 1px solid #f1d6d6;
+}
+
+/* Table Data */
+
+.approval-card td {
+  padding: clamp(10px, 2.5vw, 14px);
+
+  color: #333333;
+  font-size: clamp(12px, 3vw, 14px);
+
+  border-bottom: 1px solid #f5e2e2;
+
+  vertical-align: middle;
+}
+
+.approval-card tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.approval-card tbody tr:hover td {
+  background: #fff8f8;
+}
+
+/* Approve Button */
+
 .approve-btn {
-  background: #22c55e;
-  color: white;
+  background: #e31c1c;
+  color: #ffffff;
+
   border: none;
-  padding: clamp(8px, 2.5vw, 10px) clamp(12px, 3vw, 15px);
   border-radius: 8px;
-  cursor: pointer;
-  margin-right: 10px;
+
+  padding: clamp(8px, 2vw, 10px)
+           clamp(14px, 3vw, 18px);
+
   font-size: clamp(12px, 3vw, 14px);
   font-weight: 500;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+
+  margin-right: 8px;
+
+  transition: 0.25s ease;
 }
+
+.approve-btn:hover {
+  background: #c41717;
+}
+
+/* Reject Button */
 
 .reject-btn {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: clamp(8px, 2.5vw, 10px) clamp(12px, 3vw, 15px);
+  background: #ffffff;
+  color: #e31c1c;
+
+  border: 1px solid #e31c1c;
   border-radius: 8px;
-  cursor: pointer;
+
+  padding: clamp(8px, 2vw, 10px)
+           clamp(14px, 3vw, 18px);
+
   font-size: clamp(12px, 3vw, 14px);
   font-weight: 500;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+
+  transition: 0.25s ease;
 }
 
-/* ── 260px - 320px (ultra small) ── */
+.reject-btn:hover {
+  background: #fff5f5;
+}
+
+/* ===== 260px - 320px ===== */
+
 @media (min-width: 260px) and (max-width: 320px) {
+
   .approval-card {
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   .approve-btn,
@@ -59,13 +157,18 @@
     width: 100%;
     margin-right: 0;
     margin-bottom: 8px;
-    font-size: 12px;
+
     padding: 8px 10px;
+    font-size: 12px;
+
+    justify-content: center;
   }
 }
 
-/* ── 321px - 480px (small mobile) ── */
+/* ===== 321px - 480px ===== */
+
 @media (min-width: 321px) and (max-width: 480px) {
+
   .approval-card {
     padding: 12px;
   }
@@ -75,13 +178,18 @@
     width: 100%;
     margin-right: 0;
     margin-bottom: 8px;
-    font-size: 13px;
+
     padding: 9px 12px;
+    font-size: 13px;
+
+    justify-content: center;
   }
 }
 
-/* ── 481px - 768px (large mobile / small tablet) ── */
+/* ===== 481px - 768px ===== */
+
 @media (min-width: 481px) and (max-width: 768px) {
+
   .approval-card {
     padding: 16px;
   }
@@ -93,8 +201,10 @@
   }
 }
 
-/* ── 769px - 1024px (tablet) ── */
+/* ===== 769px - 1024px ===== */
+
 @media (min-width: 769px) and (max-width: 1024px) {
+
   .approval-card {
     padding: 18px;
   }
@@ -102,32 +212,24 @@
   .approve-btn,
   .reject-btn {
     font-size: 14px;
-    padding: 10px 14px;
+    padding: 9px 14px;
   }
 }
 
-/* ── 1025px - 1280px (small desktop) ── */
+/* ===== 1025px - 1280px ===== */
+
 @media (min-width: 1025px) and (max-width: 1280px) {
+
   .approval-card {
     padding: 20px;
   }
-
-  .approve-btn,
-  .reject-btn {
-    font-size: 14px;
-    padding: 10px 15px;
-  }
 }
 
-/* ── 1281px - 1440px (large desktop) ── */
+/* ===== 1281px - 1440px ===== */
+
 @media (min-width: 1281px) and (max-width: 1440px) {
+
   .approval-card {
     padding: 24px;
-  }
-
-  .approve-btn,
-  .reject-btn {
-    font-size: 14px;
-    padding: 10px 15px;
   }
 }
