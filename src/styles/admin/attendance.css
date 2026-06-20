@@ -62,7 +62,26 @@
 
   border-bottom: 1px solid #f1d6d6;
 }
+/* Check In Done */
+.checkin-btn.checked-in {
+  background: #9ca3af !important;
+  color: white;
+  cursor: not-allowed;
+}
 
+/* Check Out Done */
+.checkout-btn.checked-out {
+  background: #9ca3af !important;
+  color: white;
+  cursor: not-allowed;
+}
+
+/* Disabled Buttons */
+.checkin-btn:disabled,
+.checkout-btn:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
 /* Table Data */
 
 .attendance-card td {
@@ -83,6 +102,16 @@
 
 .attendance-card tbody tr:hover td {
   background: #fff8f8;
+}
+.checkin-btn.checked-in {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.checkin-btn:disabled,
+.checkout-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* Present Status */

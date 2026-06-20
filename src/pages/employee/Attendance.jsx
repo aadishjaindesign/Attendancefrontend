@@ -6,6 +6,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 function Attendance() {
 
   const [today, setToday] = useState(null);
+  const [loading, setLoading] = useState(false);
   const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
   const user = JSON.parse(
@@ -17,24 +18,31 @@ function Attendance() {
   useEffect(() => {
     loadAttendance();
   }, []);
+  const attendanceCompleted =
+  today?.checkIn && today?.checkOut;
 
-  const loadAttendance = async () => {
-    try {
+const loadAttendance = async () => {
+  try {
 
-      const res = await axios.get(
-        `${API_URL}/api/attendance/${user._id}`
-      );
+    const res = await axios.get(
+      `${API_URL}/api/attendance/today/${user._id}`
+    );
 
-      if (res.data.length > 0) {
-        setToday(res.data[0]);
-      }
+    console.log("TODAY DATA =>", res.data);
 
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    setToday(res.data);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const handleCheckIn = async () => {
+
+    if (loading || isCheckedIn) return;
+
+    setLoading(true);
+
     try {
 
       const location =
@@ -51,7 +59,7 @@ function Attendance() {
 
       alert("Check In Success");
 
-      loadAttendance();
+      await loadAttendance();
 
     } catch (err) {
 
@@ -60,10 +68,19 @@ function Attendance() {
         "Check In Failed"
       );
 
+    } finally {
+
+      setLoading(false);
+
     }
   };
 
   const handleCheckOut = async () => {
+
+    if (loading || !isCheckedIn) return;
+
+    setLoading(true);
+
     try {
 
       await axios.post(
@@ -75,12 +92,19 @@ function Attendance() {
 
       alert("Check Out Success");
 
-      loadAttendance();
+      await loadAttendance();
 
     } catch (err) {
+
       alert(
-        err.response?.data?.message
+        err.response?.data?.message ||
+        "Check Out Failed"
       );
+
+    } finally {
+
+      setLoading(false);
+
     }
   };
   const getCurrentLocation = () => {
@@ -158,25 +182,29 @@ function Attendance() {
         <div className="attendance-divider" />
 
         <div className="attendance-actions">
-
           <button
-            className={`checkin-btn ${isCheckedIn ? "checked-in" : ""
-              }`}
-            onClick={handleCheckIn}
-            disabled={isCheckedIn}
-          >
-            {isCheckedIn
-              ? "Checked In"
-              : "Check In"}
-          </button>
+  className={`checkin-btn ${
+    today?.checkIn ? "checked-in" : ""
+  }`}
+  onClick={handleCheckIn}
+  disabled={today?.checkIn || loading}
+>
+  {today?.checkIn
+    ? "Attendance Marked"
+    : "Check In"}
+</button>
 
-          <button
-            className="checkout-btn"
-            onClick={handleCheckOut}
-            disabled={!isCheckedIn}
-          >
-            Check Out
-          </button>
+        <button
+  className={`checkout-btn ${
+    attendanceCompleted ? "checked-out" : ""
+  }`}
+  onClick={handleCheckOut}
+  disabled={!isCheckedIn || attendanceCompleted || loading}
+>
+  {attendanceCompleted
+    ? "Checked Out"
+    : "Check Out"}
+</button>
 
         </div>
 
