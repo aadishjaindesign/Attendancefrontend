@@ -5,10 +5,12 @@ import "../../styles/admin/dashboard.css";
 function Dashboard() {
   const API_URL = "https://attendance-backend-ym0q.onrender.com";
   const [stats, setStats] = useState({
-    totalEmployees: 0,
-    pendingApprovals: 0,
-    recentUsers: [],
-  });
+  totalEmployees: 0,
+  pendingApprovals: 0,
+  presentToday: 0,
+  absentToday: 0,
+  recentUsers: [],
+});
 
   useEffect(() => {
     fetchDashboard();
@@ -40,13 +42,13 @@ function Dashboard() {
         </div>
 
         <div className="admin-stat-card">
-          <h4>Present Today</h4>
-          <h2>0</h2>
+         <h4>Present Today</h4>
+<h2>{stats.presentToday}</h2>
         </div>
 
         <div className="admin-stat-card">
-          <h4>Absent Today</h4>
-          <h2>0</h2>
+         <h4>Absent Today</h4>
+<h2>{stats.absentToday}</h2>
         </div>
 
         <div className="admin-stat-card pending">
