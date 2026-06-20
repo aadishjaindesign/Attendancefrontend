@@ -79,7 +79,7 @@ try {
 
 };
 
-return ( <div className="auth-container"> <div className="auth-left"> <div className="auth-brand"> <h1>AttendPro</h1>
+return ( <div className="auth-container"> <div className="auth-left"> <div className="auth-brand"> <h1>JC Attend</h1>
 
 
       <p>

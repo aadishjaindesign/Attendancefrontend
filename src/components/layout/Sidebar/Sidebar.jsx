@@ -6,7 +6,7 @@ function Sidebar({ closeSidebar }) {
     <aside className="sidebar">
 
       <div className="sidebar-logo">
-        <h2>AttendPro</h2>
+        <h2> JC Attend</h2>
       </div>
 
       <nav className="sidebar-menu">
