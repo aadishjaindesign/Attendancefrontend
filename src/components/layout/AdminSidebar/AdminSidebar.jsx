@@ -34,7 +34,7 @@ function AdminSidebar({ closeSidebar }) {
         className={({ isActive }) => isActive ? "admin-link active" : "admin-link"}
         onClick={closeSidebar}
       >
-        Attendance
+        JC Attendance
       </NavLink>
 
       <NavLink

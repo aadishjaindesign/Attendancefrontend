@@ -1,177 +1,62 @@
-/* ══════════════════════════════════════════
-   ATTENDANCE CARD
-   Modern White + Brand Red Theme
-══════════════════════════════════════════ */
-
 .attendance-card {
-  background: #ffffff;
-
-  border: 1px solid #f1d6d6;
-  border-radius: 14px;
-
-  padding: clamp(14px, 4vw, 24px);
-
-  overflow-x: auto;
-  width: 100%;
-  box-sizing: border-box;
-
-  scrollbar-width: thin;
-  scrollbar-color: #e31c1c #ffffff;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
 }
-
-/* Scrollbar */
-
-.attendance-card::-webkit-scrollbar {
-  height: 5px;
-}
-
-.attendance-card::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-.attendance-card::-webkit-scrollbar-thumb {
-  background: #e31c1c;
-  border-radius: 10px;
-}
-
-/* Table */
 
 .attendance-card table {
   width: 100%;
-  min-width: 600px;
   border-collapse: collapse;
-  table-layout: auto;
 }
-
-/* Header */
 
 .attendance-card th {
-  padding: clamp(10px, 2.5vw, 14px);
-
+  background: #f8fafc;
+  padding: 13px 16px;
   text-align: left;
-  white-space: nowrap;
-
-  background: #fff5f5;
-
-  color: #e31c1c;
-  font-size: 11px;
-  font-weight: 600;
-
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-
-  border-bottom: 1px solid #f1d6d6;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
 }
-/* Check In Done */
-.checkin-btn.checked-in {
-  background: #9ca3af !important;
-  color: white;
-  cursor: not-allowed;
-}
-
-/* Check Out Done */
-.checkout-btn.checked-out {
-  background: #9ca3af !important;
-  color: white;
-  cursor: not-allowed;
-}
-
-/* Disabled Buttons */
-.checkin-btn:disabled,
-.checkout-btn:disabled {
-  opacity: 1;
-  cursor: not-allowed;
-}
-/* Table Data */
 
 .attendance-card td {
-  padding: clamp(10px, 2.5vw, 14px);
-
-  color: #333333;
-  font-size: clamp(12px, 3vw, 14px);
-
-  border-bottom: 1px solid #f5e2e2;
-
+  padding: 13px 16px;
+  font-size: 0.88rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
   vertical-align: middle;
-  white-space: nowrap;
 }
 
-.attendance-card tbody tr:last-child td {
-  border-bottom: none;
+.attendance-card tr:last-child td { border-bottom: none; }
+.attendance-card tr:hover td { background: #f8fafc; }
+
+.att-emp-info { display: flex; flex-direction: column; gap: 2px; }
+.att-emp-name { font-weight: 600; color: #1e293b; }
+.att-emp-dept { font-size: 0.78rem; color: #94a3b8; }
+
+.present-status { color: #16a34a; font-weight: 600; }
+.absent-status  { color: #dc2626; font-weight: 600; }
+.sunday-status  { color: #3b82f6; font-weight: 600; }
+.holiday-status { color: #7c3aed; font-weight: 600; }
+.leave-status   { color: #d97706; font-weight: 600; }
+
+.no-data { text-align: center; padding: 30px; color: #94a3b8; }
+
+.table-loading {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; padding: 40px; color: #64748b;
 }
 
-.attendance-card tbody tr:hover td {
-  background: #fff8f8;
-}
-.checkin-btn.checked-in {
-  background: #9ca3af;
-  cursor: not-allowed;
-}
+/* ══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════ */
 
-.checkin-btn:disabled,
-.checkout-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* Present Status */
-
-.present-status {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #ecfdf3;
-  color: #16a34a;
-
-  border: 1px solid #bbf7d0;
-
-  padding: 6px 12px;
-
-  border-radius: 999px;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  min-width: 90px;
-  height: 34px;
-
-  white-space: nowrap;
-}
-
-/* Absent Status */
-
-.absent-status {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #fef2f2;
-  color: #dc2626;
-
-  border: 1px solid #fecaca;
-
-  padding: 6px 12px;
-
-  border-radius: 999px;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  min-width: 90px;
-  height: 34px;
-
-  white-space: nowrap;
-}
-.present-status,
-.absent-status {
-  gap: 6px;
-}
-
-/* ===== 260px - 320px ===== */
+/* ── 260px – 320px ── */
 
 @media (min-width: 260px) and (max-width: 320px) {
-
   .attendance-card {
     padding: 10px;
     border-radius: 10px;
@@ -186,10 +71,9 @@
   }
 }
 
-/* ===== 321px - 480px ===== */
+/* ── 321px – 480px ── */
 
 @media (min-width: 321px) and (max-width: 480px) {
-
   .attendance-card {
     padding: 12px;
   }
@@ -200,10 +84,9 @@
   }
 }
 
-/* ===== 481px - 768px ===== */
+/* ── 481px – 768px ── */
 
 @media (min-width: 481px) and (max-width: 768px) {
-
   .attendance-card {
     padding: 16px;
   }
@@ -214,19 +97,17 @@
   }
 }
 
-/* ===== 769px - 1024px ===== */
+/* ── 769px – 1024px ── */
 
 @media (min-width: 769px) and (max-width: 1024px) {
-
   .attendance-card {
     padding: 18px;
   }
 }
 
-/* ===== 1025px - 1280px ===== */
+/* ── 1025px – 1280px ── */
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-
   .attendance-card {
     padding: 20px;
   }
@@ -237,10 +118,9 @@
   }
 }
 
-/* ===== 1281px - 1440px ===== */
+/* ── 1281px – 1440px ── */
 
 @media (min-width: 1281px) and (max-width: 1440px) {
-
   .attendance-card {
     padding: 24px;
   }

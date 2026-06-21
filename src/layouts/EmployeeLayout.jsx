@@ -22,7 +22,7 @@ function EmployeeLayout() {
         }`}
       >
         <div className="emp-sidebar-header">
-          <h2 className="emp-logo"> JC Attend</h2>
+          <h2 className="emp-logo"> JC Attendance</h2>
 
           <button
             className="emp-close-btn"

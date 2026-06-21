@@ -6,7 +6,7 @@ function Sidebar({ closeSidebar }) {
     <aside className="sidebar">
 
       <div className="sidebar-logo">
-        <h2> JC Attend</h2>
+        <h2> JC Attendance</h2>
       </div>
 
       <nav className="sidebar-menu">
@@ -28,7 +28,7 @@ function Sidebar({ closeSidebar }) {
           }
           onClick={closeSidebar}
         >
-          Attendance
+         JC Attendance
         </NavLink>
 
         <NavLink

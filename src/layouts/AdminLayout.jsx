@@ -21,7 +21,7 @@ function AdminLayout() {
       <aside className={`adm-sidebar ${isOpen ? "adm-sidebar--open" : ""}`}>
 
         <div className="adm-sidebar-header">
-          <h2 className="adm-logo">JC Attend</h2>
+          <h2 className="adm-logo">Attendance</h2>
           <button
             className="adm-close-btn"
             onClick={() => setIsOpen(false)}

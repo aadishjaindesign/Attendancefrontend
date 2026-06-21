@@ -1,114 +1,149 @@
-/* ══════════════════════════════════════════
-   LEAVE CARD
-   Theme: #FFE5BF + White Glassmorphism
-   Fix: Approved badge vertical alignment
-══════════════════════════════════════════ */
 .leave-card {
-  background: rgb(255, 255, 255);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: clamp(14px, 4vw, 20px);
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(16, 15, 14, 0.1);
-  overflow-x: auto;
-  width: 100%;
-  box-sizing: border-box;
-  scrollbar-width: thin;
-  scrollbar-color: #000000 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
 }
-
-.leave-card::-webkit-scrollbar { height: 5px; }
-.leave-card::-webkit-scrollbar-track { background: rgba(255, 229, 191, 0.15); border-radius: 10px; }
-.leave-card::-webkit-scrollbar-thumb { background: #000000; border-radius: 10px; }
 
 .leave-card table {
   width: 100%;
-  min-width: 580px;
   border-collapse: collapse;
 }
 
 .leave-card th {
-  padding: clamp(10px, 2.5vw, 14px);
+  background: #f8fafc;
+  padding: 13px 16px;
   text-align: left;
-  font-size: 11px;
-  font-weight: 600;
-  color: #000000;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background: rgba(255, 255, 255, 0.842);
-  border-bottom: 1px solid rgba(255, 229, 191, 0.4);
-  white-space: nowrap;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .leave-card td {
-  padding: clamp(10px, 2.5vw, 14px);
-  font-size: clamp(12px, 3vw, 14px);
-  color: #000000;
-  border-bottom: 1px solid rgba(255, 229, 191, 0.25);
-  /* Fix: vertical align badges */
+  padding: 13px 16px;
+  font-size: 0.88rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
   vertical-align: middle;
 }
 
-.leave-card tbody tr:last-child td { border-bottom: none; }
-.leave-card tbody tr:hover td { background: rgba(255, 229, 191, 0.15); }
+.leave-card tr:last-child td { border-bottom: none; }
+.leave-card tr:hover td { background: #f8fafc; }
 
-/* Status badges — fixed alignment */
-.approved-badge {
+.leave-emp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.leave-emp-name { font-weight: 600; color: #1e293b; }
+.leave-emp-dept { font-size: 0.78rem; color: #94a3b8; }
+
+.leave-type-badge {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.leave-type-badge.admin-granted {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.leave-reason {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rejection-note {
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.approve-btn {
+  padding: 6px 14px;
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  background: #dcfce7;
-  color: #166534;
-  font-weight: 600;
-  font-size: clamp(11px, 2.5vw, 13px);
-  padding: 4px 10px;
-  border-radius: 20px;
-  line-height: 1;
-  vertical-align: middle;
+  gap: 4px;
+  min-width: 80px;
+  justify-content: center;
 }
 
-.rejected-badge {
+.approve-btn:hover:not(:disabled) { background: #16a34a; }
+.approve-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.reject-btn {
+  padding: 6px 14px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  background: #000000;
-  color: #991b1b;
-  font-weight: 600;
-  font-size: clamp(11px, 2.5vw, 13px);
-  padding: 4px 10px;
-  border-radius: 20px;
-  line-height: 1;
-  vertical-align: middle;
+  gap: 4px;
 }
 
-.pending-badge {
-  display: inline-flex;
+.reject-btn:hover:not(:disabled) { background: #dc2626; }
+.reject-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.approved-status { color: #16a34a; font-weight: 600; }
+.rejected-status { color: #dc2626; font-weight: 600; }
+.pending-status  { color: #d97706; font-weight: 600; }
+
+.action-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.no-data { text-align: center; padding: 30px; color: #94a3b8; }
+
+.table-loading {
+  display: flex;
   align-items: center;
-  background: #ffffff;
-  color: #92400e;
-  font-weight: 600;
-  font-size: clamp(11px, 2.5vw, 13px);
-  padding: 4px 10px;
-  border-radius: 20px;
-  line-height: 1;
-  vertical-align: middle;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  color: #64748b;
 }
 
-/* ── 260px - 320px ── */
+/* ══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════ */
+
+/* ── 260px – 320px ── */
 @media (min-width: 260px) and (max-width: 320px) {
   .leave-card { padding: 10px; border-radius: 8px; }
 }
 
-/* ── 321px - 480px ── */
+/* ── 321px – 480px ── */
 @media (min-width: 321px) and (max-width: 480px) {
   .leave-card { padding: 12px; }
 }
 
-/* ── 481px - 768px ── */
+/* ── 481px – 768px ── */
 @media (min-width: 481px) and (max-width: 768px) {
   .leave-card { padding: 16px; }
 }
 
-/* ── 769px - 1024px ── */
+/* ── 769px – 1024px ── */
 @media (min-width: 769px) and (max-width: 1024px) {
   .leave-card { padding: 18px; }
   .leave-card table { min-width: unset; width: 100%; }
