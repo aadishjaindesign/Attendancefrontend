@@ -14,7 +14,7 @@ import Profile from "../pages/employee/Profile";
 // import History from "../pages/employee/History";
 import Settings from "../pages/admin/Settings";
 import AttendanceManagement from "../pages/admin/AttendanceManagement";
-import ForgotPassword from "../pages/auth/ForgotPassword";
+import ForgotPassword from "../pages/auth/Forgotpassword";
 
 import AdminDashboard from "../pages/admin/Dashboard";
 import Employees from "../pages/admin/Employees";
