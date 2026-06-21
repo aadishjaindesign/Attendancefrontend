@@ -14,6 +14,7 @@ import Profile from "../pages/employee/Profile";
 // import History from "../pages/employee/History";
 import Settings from "../pages/admin/Settings";
 import AttendanceManagement from "../pages/admin/AttendanceManagement";
+import ForgotPassword from "../pages/auth/ForgotPassword";
 
 import AdminDashboard from "../pages/admin/Dashboard";
 import Employees from "../pages/admin/Employees";
@@ -28,17 +29,17 @@ function AppRoutes() {
 
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
+       <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/employee" element={<EmployeeLayout />}>
           <Route path="dashboard" element={<EmployeeDashboard />} />
           <Route path="attendance" element={<Attendance />} />
           <Route path="history" element={<AttendanceHistory />} />
           <Route path="leave" element={<Leave />} />
           <Route path="profile" element={<Profile />} />
-          <Route
+          {/* <Route
             path="history"
             element={<History />}
-          />
+          /> */}
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>

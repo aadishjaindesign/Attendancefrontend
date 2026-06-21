@@ -7,7 +7,10 @@
   width: 100%;
   box-sizing: border-box;
 }
-
+.badge-yellow {
+  background: #fff3cd;
+  color: #856404;
+}
 .page-title {
   margin-bottom: clamp(16px, 4vw, 24px);
 }
@@ -50,7 +53,7 @@
 .report-filters select:focus,
 .report-filters input[type="date"]:focus {
   /* border-color: #d97706; */
-  box-shadow: 0 0 0 2px rgba(255, 229, 191, 0.4);
+  /* box-shadow: 0 0 0 2px rgba(255, 229, 191, 0.4); */
 }
 
 .fetch-btn {
@@ -81,19 +84,19 @@
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   border-radius: 12px;
-  border: 1px solid rgba(255, 229, 191, 0.5);
+  border: 1px solid rgba(171, 170, 169, 0.5);
 }
 
 /* ── Employee report card ── */
 .emp-report-card {
-  background: rgba(255, 255, 255, 0.6);
+  /* background: rgba(255, 255, 255, 0.6); */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 229, 191, 0.5);
+  border: 1px solid rgba(207, 207, 206, 0.5);
   border-radius: 12px;
   margin-bottom: clamp(10px, 3vw, 16px);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(255, 180, 80, 0.1);
+  /* box-shadow: 0 4px 16px rgba(255, 180, 80, 0.1); */
 }
 
 /* ── Card header ── */
@@ -109,7 +112,7 @@
 }
 
 .emp-report-header:hover {
-  background: rgba(255, 229, 191, 0.15);
+  /* background: rgba(255, 229, 191, 0.15); */
 }
 
 .emp-report-info {
@@ -127,7 +130,7 @@
 
 .emp-dept {
   font-size: clamp(11px, 3vw, 13px);
-  color: #7c5c3a;
+  color: #000000;
 }
 
 .emp-report-stats {
@@ -159,11 +162,12 @@
   flex-shrink: 0;
 }
 
+
 /* ── Expanded detail ── */
 .emp-report-detail {
   padding: clamp(14px, 4vw, 20px);
-  border-top: 1px solid rgba(255, 229, 191, 0.4);
-  background: rgba(255, 248, 240, 0.5);
+  border-top: 1px solid rgba(216, 216, 216, 0.4);
+  /* background: rgba(255, 248, 240, 0.5); */
 }
 
 .detail-heading {
@@ -174,7 +178,7 @@
 }
 
 .no-data {
-  color: #7c5c3a;
+  /* color: #7c5c3a; */
   font-size: 13px;
   padding: 10px 0;
 }
@@ -203,25 +207,25 @@
   text-align: left;
   font-size: 11px;
   font-weight: 600;
-  color: #7c5c3a;
+  color: #000000;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  background: rgba(255, 229, 191, 0.1);
+  /* background: rgba(255, 229, 191, 0.1); */
   white-space: nowrap;
-  border-bottom: 1px solid rgba(255, 229, 191, 0.4);
+  /* border-bottom: 1px solid rgba(255, 229, 191, 0.4); */
 }
 
 .detail-table td {
   padding: clamp(10px, 2.5vw, 14px) clamp(10px, 3vw, 14px);
   font-size: clamp(12px, 3vw, 13px);
-  color: #3d2800;
+  color: #000000;
   border-bottom: 1px solid rgba(255, 229, 191, 0.2);
   white-space: nowrap;
   vertical-align: middle;
 }
 
 .detail-table tbody tr:last-child td { border-bottom: none; }
-.detail-table tbody tr:hover td { background: rgba(255, 229, 191, 0.15); }
+/* .detail-table tbody tr:hover td { background: rgba(255, 229, 191, 0.15); } */
 
 /* ── Status badges ── */
 .status-badge {

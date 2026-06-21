@@ -9,7 +9,7 @@
 }
 
 .spinner-path {
-  stroke: var(--spinner-color, #4f46e5);
+  stroke: var(--spinner-color, #e31c1c);
   stroke-linecap: round;
   stroke-dasharray: 90, 150;
   stroke-dashoffset: -35;

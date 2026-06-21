@@ -1,53 +1,141 @@
+/* ══════════════════════════════════════════
+   ATTENDANCE CARD
+   Modern White + Brand Red Theme
+══════════════════════════════════════════ */
+
+/* ── Card Container ── */
+
 .attendance-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  background: #ffffff;
+  border: 1px solid #f1d6d6;
+  border-radius: 14px;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
+
+/* ── Scrollbar ── */
+
+.attendance-card::-webkit-scrollbar {
+  height: 5px;
+}
+
+.attendance-card::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.attendance-card::-webkit-scrollbar-thumb {
+  background: #e31c1c;
+  border-radius: 10px;
+}
+
+/* ── Table ── */
 
 .attendance-card table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
+
+.attendance-card tr {
+  height: 56px;
+}
+
+/* ── Table Header ── */
 
 .attendance-card th {
-  background: #f8fafc;
-  padding: 13px 16px;
+  padding: clamp(10px, 2.5vw, 14px);
   text-align: left;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #475569;
+  white-space: nowrap;
+  background: #fff5f5;
+  color: #e31c1c;
+  font-size: 11px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  border-bottom: 1px solid #e2e8f0;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #f1d6d6;
 }
+
+.attendance-card th:last-child {
+  text-align: center;
+}
+
+/* ── Table Data ── */
 
 .attendance-card td {
-  padding: 13px 16px;
-  font-size: 0.88rem;
-  color: #334155;
-  border-bottom: 1px solid #f1f5f9;
+  padding: clamp(10px, 2.5vw, 14px);
+  color: #333333;
+  font-size: clamp(12px, 3vw, 14px);
+  border-bottom: 1px solid #f5e2e2;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
-.attendance-card tr:last-child td { border-bottom: none; }
-.attendance-card tr:hover td { background: #f8fafc; }
+.attendance-card td:last-child {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 0;
+}
 
-.att-emp-info { display: flex; flex-direction: column; gap: 2px; }
-.att-emp-name { font-weight: 600; color: #1e293b; }
-.att-emp-dept { font-size: 0.78rem; color: #94a3b8; }
+.attendance-card tbody tr:last-child td {
+  border-bottom: none;
+}
 
-.present-status { color: #16a34a; font-weight: 600; }
-.absent-status  { color: #dc2626; font-weight: 600; }
-.sunday-status  { color: #3b82f6; font-weight: 600; }
-.holiday-status { color: #7c3aed; font-weight: 600; }
-.leave-status   { color: #d97706; font-weight: 600; }
+/* ── Status Badges ── */
 
-.no-data { text-align: center; padding: 30px; color: #94a3b8; }
+.present-status,
+.absent-status {
+  /* display: inline-flex; */
+  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  /* border-color: #16a34a; */
+  gap: 6px;
+  /* background: #ffffff; */
+  padding: 4px 14px;
+  /* border-radius: 999px; */
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 70px;
+  height: 30px;
+  line-height: 1;
+  box-shadow: none;
+  outline: none;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+}
 
-.table-loading {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; padding: 40px; color: #64748b;
+.present-status {
+  color: #16a34a;
+  border: 1.5px solid #e2e0e0;
+}
+
+.absent-status {
+  color: #dc2626;
+  border: 1.5px solid #fecaca;
+}
+
+/* ── Buttons ── */
+
+.checkin-btn,
+.checkout-btn {
+  cursor: pointer;
+}
+
+.checkin-btn.checked-in,
+.checkout-btn.checked-out {
+  background: #9ca3af;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.checkin-btn:disabled,
+.checkout-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* ══════════════════════════════════════════

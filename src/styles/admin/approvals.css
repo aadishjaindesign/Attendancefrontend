@@ -70,8 +70,8 @@
 .reject-btn:hover:not(:disabled) { background: #dc2626; }
 .reject-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.pending-status  { color: #d97706; font-weight: 600; }
-.approved-status { color: #16a34a; font-weight: 600; }
+.pending-status  { color: #d97706; font-weight: 400; }
+.approved-status { color: #16a34a; font-weight: 400; }
 
 .no-data { text-align: center; padding: 30px; color: #94a3b8; }
 

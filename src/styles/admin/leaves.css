@@ -107,9 +107,9 @@
 .reject-btn:hover:not(:disabled) { background: #dc2626; }
 .reject-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.approved-status { color: #16a34a; font-weight: 600; }
-.rejected-status { color: #dc2626; font-weight: 600; }
-.pending-status  { color: #d97706; font-weight: 600; }
+.approved-status { color: #16a34a; font-weight: 400; }
+.rejected-status { color: #dc2626; font-weight: 400; }
+.pending-status  { color: #d97706; font-weight: 400; }
 
 .action-btns { display: flex; gap: 6px; flex-wrap: wrap; }
 

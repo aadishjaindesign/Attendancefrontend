@@ -36,7 +36,28 @@ function Reports() {
         params.startDate = startDate;
         params.endDate = endDate;
       }
-      const res = await axios.get(`${API_URL}/api/admin/employee-report`, { params });
+      const res = await axios.get(
+  `${API_URL}/api/admin/employee-report`,
+  { params }
+);
+
+console.log("REPORT DATA =>", res.data);
+console.log(
+  "FIRST EMPLOYEE ATTENDANCE =>",
+  res.data[0]?.attendance
+);
+
+console.log(
+  "FIRST EMPLOYEE TOTAL DAYS =>",
+  res.data[0]?.totalDays
+);
+
+console.log(
+  "FIRST EMPLOYEE TOTAL HOURS =>",
+  res.data[0]?.totalHours
+);
+
+setReport(res.data);
       setReport(res.data);
     } catch (error) { console.error(error); }
     finally { setLoading(false); }
@@ -46,14 +67,15 @@ function Reports() {
     setExpandedEmp(expandedEmp === empId ? null : empId);
   };
 
-  const statusColor = (s) => {
-    if (s === "Present") return "badge-green";
-    if (s === "Absent") return "badge-red";
-    if (s === "Sunday") return "badge-blue";
-    if (s === "Holiday") return "badge-purple";
-    if (s === "Leave") return "badge-orange";
-    return "badge-gray";
-  };
+const statusColor = (s) => {
+  if (s === "Present") return "badge-green";
+  if (s === "Half Day") return "badge-yellow";
+  if (s === "Absent") return "badge-red";
+  if (s === "Sunday") return "badge-blue";
+  if (s === "Holiday") return "badge-purple";
+  if (s === "Leave") return "badge-orange";
+  return "badge-gray";
+};
 
   return (
     <div className="reports-page">
@@ -102,6 +124,9 @@ function Reports() {
               </div>
               <div className="emp-report-stats">
                 <div className="stat-pill green">Present: {emp.totalDays}</div>
+                <div className="stat-pill yellow">
+  Half Day: {emp.halfDays}
+</div>
                 <div className="stat-pill blue">Hours: {emp.totalHours}h</div>
                 <div className="stat-pill orange">Leaves: {emp.leavesCount}</div>
               </div>

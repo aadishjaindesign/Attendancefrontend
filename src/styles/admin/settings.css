@@ -20,7 +20,7 @@
   color: #64748b;
   margin-bottom: 16px;
   background: #eff6ff;
-  border-left: 3px solid #3b82f6;
+  border-left: 3px solid  #e31c1c;
   padding: 8px 12px;
   border-radius: 4px;
 }
@@ -52,7 +52,7 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #4f46e5;
+  border-color:  #e31c1c;
 }
 
 .form-row {
@@ -64,7 +64,7 @@
 
 .save-btn {
   padding: 11px 28px;
-  background: #4f46e5;
+  background:  #e31c1c;
   color: #fff;
   border: none;
   border-radius: 8px;

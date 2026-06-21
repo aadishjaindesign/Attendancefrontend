@@ -9,11 +9,13 @@ function Dashboard() {
 
   const [stats, setStats] = useState({
     present: 0,
+    halfDay: 0,
     absent: 0,
     hours: 0,
     percent: 0,
   });
-
+  
+ 
   useEffect(() => {
     const storedUser = JSON.parse(
       localStorage.getItem("user")
@@ -25,40 +27,84 @@ function Dashboard() {
       fetchAttendance(storedUser._id);
     }
   }, []);
+  useEffect(() => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
 
-  const fetchAttendance = async (id) => {
-    try {
+  console.log("USER:", storedUser);
+
+  if (!storedUser) {
+    window.location.href = "/";
+    return;
+  }
+
+  setUser(storedUser);
+
+  if (storedUser?._id) {
+    fetchAttendance(storedUser._id);
+  }
+}, []);
+
+const fetchAttendance = async (id) => {
+  try {
     const res = await axios.get(
-  `${API_URL}/api/attendance/${id}`
-);
+      `${API_URL}/api/attendance/${id}`
+    );
 
-      const data = res.data;
+    const data = res.data;
 
-      setAttendance(data);
+    setAttendance(data);
 
-      let totalHours = 0;
+    let totalHours = 0;
 
-      data.forEach((item) => {
-        if (item.checkIn && item.checkOut) {
-          const inTime = new Date(item.checkIn);
-          const outTime = new Date(item.checkOut);
+    data.forEach((item) => {
+      if (item.checkIn && item.checkOut) {
+        const inTime = new Date(item.checkIn);
+        const outTime = new Date(item.checkOut);
 
-          totalHours +=
-            (outTime - inTime) / (1000 * 60 * 60);
-        }
-      });
+        totalHours +=
+          (outTime - inTime) / (1000 * 60 * 60);
+      }
+    });
+    
 
-      setStats({
-        present: data.length,
-        absent: 0,
-        hours: totalHours.toFixed(1),
-        percent: data.length ? 100 : 0,
-      });
+const presentDays = data.filter(
+  (x) => x.status === "Present"
+).length;
 
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const halfDays = data.filter(
+  (x) => x.status === "Half Day"
+).length;
+
+const totalWorkingDays = data.filter(
+  (x) =>
+    x.status === "Present" ||
+    x.status === "Half Day" ||
+    x.status === "Absent"
+).length;
+
+const attendancePercent =
+  totalWorkingDays > 0
+    ? (
+        ((presentDays + halfDays * 0.5) /
+          totalWorkingDays) *
+        100
+      ).toFixed(1)
+    : 0;
+
+setStats({
+  present: presentDays,
+  halfDay: halfDays,
+  absent: data.filter(
+    (x) => x.status === "Absent"
+  ).length,
+  hours: totalHours.toFixed(1),
+  percent: attendancePercent,
+});
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   return (
     <div className="dashboard">
@@ -99,6 +145,10 @@ function Dashboard() {
         <div className="stat-card">
           <h4>Present Days</h4>
           <h2>{stats.present}</h2>
+        </div>
+        <div className="stat-card">
+          <h4>Half Days</h4>
+          <h2>{stats.halfDay}</h2>
         </div>
 
         <div className="stat-card">
@@ -155,20 +205,28 @@ function Dashboard() {
                   <td>
                     {item.checkIn
                       ? new Date(
-                          item.checkIn
-                        ).toLocaleTimeString()
+                        item.checkIn
+                      ).toLocaleTimeString()
                       : "--"}
                   </td>
 
                   <td>
                     {item.checkOut
                       ? new Date(
-                          item.checkOut
-                        ).toLocaleTimeString()
+                        item.checkOut
+                      ).toLocaleTimeString()
                       : "--"}
                   </td>
 
-                  <td className="present">
+                  <td
+                    className={
+                      item.status === "Present"
+                        ? "present"
+                        : item.status === "Half Day"
+                          ? "halfday"
+                          : "absent"
+                    }
+                  >
                     {item.status}
                   </td>
                 </tr>
