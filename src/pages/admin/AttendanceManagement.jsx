@@ -3,6 +3,8 @@ import axios from "axios";
 import { RefreshCw, Search, Users, Clock, Calendar } from "lucide-react";
 import Spinner from "../../components/Spinner";
 import "../../styles/admin/attendance.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
@@ -13,14 +15,24 @@ function AttendanceManagement() {
   const [refreshing, setRefreshing] = useState(false);
   const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
+  const [dateFilter, setDateFilter] = useState("All");
+  const [startDate, setStartDate] = useState("");
+const [endDate, setEndDate] = useState("");
 
   useEffect(() => {
     fetchAttendance();
   }, []);
 
-  useEffect(() => {
-    applyFilters();
-  }, [records, search, filterStatus]);
+ useEffect(() => {
+  applyFilters();
+}, [
+  records,
+  search,
+  filterStatus,
+  dateFilter,
+  startDate,
+  endDate,
+]);
 
   const fetchAttendance = async (isRefresh = false) => {
     if (isRefresh) setRefreshing(true);
@@ -40,37 +52,127 @@ function AttendanceManagement() {
     }
   };
 
-  const applyFilters = () => {
-    let data = [...records];
+const applyFilters = () => {
+  let data = [...records];
 
-    if (search.trim()) {
-      const q = search.toLowerCase();
+  // Search
+  if (search.trim()) {
+    const q = search.toLowerCase();
+
+    data = data.filter(
+      (r) =>
+        r.employee?.name?.toLowerCase().includes(q) ||
+        r.employee?.department?.toLowerCase().includes(q)
+    );
+  }
+
+  const today = new Date().toISOString().split("T")[0];
+
+  // Date Filter
+  if (dateFilter === "Today") {
+    data = data.filter((r) => r.date === today);
+  }
+
+  if (dateFilter === "Weekly") {
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
+
+    data = data.filter((r) => {
+      const recordDate = new Date(r.date);
+      return recordDate >= weekAgo;
+    });
+  }
+
+  if (dateFilter === "Monthly") {
+    const now = new Date();
+
+    data = data.filter((r) => {
+      const recordDate = new Date(r.date);
+
+      return (
+        recordDate.getMonth() === now.getMonth() &&
+        recordDate.getFullYear() === now.getFullYear()
+      );
+    });
+  }
+
+  if (
+    dateFilter === "Custom" &&
+    startDate &&
+    endDate
+  ) {
+    data = data.filter(
+      (r) =>
+        r.date >= startDate &&
+        r.date <= endDate
+    );
+  }
+
+  // Status Filter
+  if (filterStatus !== "All") {
+    if (filterStatus === "Today") {
+      data = data.filter((r) => r.date === today);
+    } else {
       data = data.filter(
-        (r) =>
-          r.employee?.name?.toLowerCase().includes(q) ||
-          r.employee?.department?.toLowerCase().includes(q)
+        (r) => r.status === filterStatus
       );
     }
+  }
 
-    if (filterStatus !== "All") {
-      data = data.filter((r) => r.status === filterStatus);
-    }
-
-    setFiltered(data);
-  };
+  setFiltered(data);
+};
 
   const calculateHours = (checkIn, checkOut) => {
     if (!checkIn || !checkOut) return "-";
     const diff = (new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60);
     return `${diff.toFixed(1)}h`;
   };
+  const downloadPDF = () => {
+  const doc = new jsPDF();
+
+  doc.setFontSize(16);
+  doc.text("Attendance Report", 14, 15);
+
+  doc.setFontSize(10);
+  doc.text(`Filter: ${dateFilter}`, 14, 22);
+
+  autoTable(doc, {
+    startY: 30,
+    head: [[
+      "#",
+      "Employee",
+      "Date",
+      "Check In",
+      "Check Out",
+      "Hours",
+      "Status"
+    ]],
+    body: filtered.map((item, i) => [
+      i + 1,
+      item.employee?.name || "-",
+      item.date || "-",
+      item.checkIn
+        ? new Date(item.checkIn).toLocaleTimeString()
+        : "-",
+      item.checkOut
+        ? new Date(item.checkOut).toLocaleTimeString()
+        : "-",
+      calculateHours(item.checkIn, item.checkOut),
+      item.status
+    ])
+  });
+
+  doc.save(
+    `attendance-${dateFilter.toLowerCase()}.pdf`
+  );
+};
 
   const statusClass = (s) => {
-    if (s === "Present")  return "att-badge att-present";
+    if (s === "Present") return "att-badge att-present";
     if (s === "Half Day") return "att-badge att-halfday";
-    if (s === "Sunday")   return "att-badge att-sunday";
-    if (s === "Holiday")  return "att-badge att-holiday";
-    if (s === "Leave")    return "att-badge att-leave";
+    if (s === "Sunday") return "att-badge att-sunday";
+    if (s === "Holiday") return "att-badge att-holiday";
+    if (s === "Leave") return "att-badge att-leave";
     return "att-badge att-absent";
   };
 
@@ -80,12 +182,22 @@ function AttendanceManagement() {
     return d.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
   };
 
-  const statuses = ["All", "Present", "Absent", "Half Day", "Sunday", "Holiday", "Leave"];
+  const statuses = [
+  "All",
+  "Today",
+  "Present",
+  "Absent",
+  "Half Day",
+  "Sunday",
+  "Holiday",
+  "Leave"
+];
 
   // Summary counts
   const presentCount = filtered.filter((r) => r.status === "Present").length;
-  const absentCount  = filtered.filter((r) => r.status === "Absent").length;
-  const totalCount   = filtered.length;
+  const absentCount = filtered.filter((r) => r.status === "Absent").length;
+  const totalCount = filtered.length;
+  
 
   return (
     <div className="att-mgmt-root">
@@ -104,6 +216,12 @@ function AttendanceManagement() {
           <RefreshCw size={14} className={refreshing ? "spin" : ""} />
           {refreshing ? "Refreshing..." : "Refresh"}
         </button>
+        <button
+  className="att-refresh-btn"
+  onClick={downloadPDF}
+>
+  Download PDF
+</button>
       </div>
 
       {/* Summary pills */}
@@ -130,6 +248,33 @@ function AttendanceManagement() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
+      <select
+  value={dateFilter}
+  onChange={(e) => setDateFilter(e.target.value)}
+>
+  <option value="All">All</option>
+  <option value="Today">Today</option>
+  <option value="Weekly">Weekly</option>
+  <option value="Monthly">Monthly</option>
+  <option value="Custom">Custom</option>
+</select>
+
+<p>Current Filter: {dateFilter}</p>
+        {dateFilter === "Custom" && (
+  <>
+    <input
+      type="date"
+      value={startDate}
+      onChange={(e) => setStartDate(e.target.value)}
+    />
+
+    <input
+      type="date"
+      value={endDate}
+      onChange={(e) => setEndDate(e.target.value)}
+    />
+  </>
+)}
 
         <div className="att-status-filters">
           {statuses.map((s) => (

@@ -169,7 +169,7 @@ function Settings() {
       {/* Holiday Management */}
       <div className="settings-card">
         <h3 className="settings-section-title">Holiday Management</h3>
-        <p className="settings-hint">Jab holiday add karoge, sab employees ki attendance automatically lag jayegi.</p>
+        <p className="settings-hint">Adding a holiday will automatically mark attendance for all employees.</p>
 
         <div className="form-row">
           <div className="form-group">

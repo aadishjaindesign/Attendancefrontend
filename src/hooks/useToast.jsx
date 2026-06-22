@@ -21,5 +21,14 @@ export function useToast() {
     info: (msg) => addToast(msg, "info"),
   };
 
-  return { toasts, toast, removeToast };
+  return {
+  toast: {
+    success: (msg) => addToast(msg, "success"),
+    error: (msg) => addToast(msg, "error"),
+    info: (msg) => addToast(msg, "info"),
+  },
+  showToast: (msg, type = "info") => addToast(msg, type),
+  hideToast: removeToast,
+  toasts,
+};
 }
