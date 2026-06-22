@@ -1,186 +1,340 @@
-/* ── Page title ── */
-.page-title {
-  margin-bottom: clamp(16px, 4vw, 28px);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { box-sizing: border-box; }
+
+.leave-page {
+  font-family: 'Inter', sans-serif;
+  padding: 14px;
+  background: #f8fafc;
+  min-height: 100vh;
 }
 
-.page-title h2 {
-  font-size: clamp(18px, 5vw, 26px);
+.page-title { margin-bottom: 20px; }
+.page-title h2 { font-size: clamp(1.1rem, 4vw, 1.4rem); font-weight: 800; color: #0f172a; margin: 0 0 4px; }
+.page-title p  { font-size: 0.85rem; color: #64748b; margin: 0; }
+
+/* Form Card */
+.leave-form-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: #475569; margin-bottom: 6px; }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid #e2e8f0; border-radius: 10px;
+  font-size: 0.88rem; color: #1e293b;
+  font-family: 'Inter', sans-serif; background: #fff;
+  transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { outline: none; border-color: #c0392b; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.submit-btn {
+  width: 100%; padding: 13px;
+  background: #c0392b; color: #fff;
+  border: none; border-radius: 10px;
+  font-size: 0.93rem; font-weight: 700;
+  cursor: pointer; transition: background 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 46px;
+}
+.submit-btn:hover:not(:disabled) { background: #a93226; }
+.submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* History card */
+.leave-history-card {
+  background: #fff; border-radius: 14px;
+  border: 1px solid #e2e8f0; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.leave-history-card h3 {
+  font-size: 1rem; font-weight: 700; color: #0f172a;
+  padding: 14px 16px; border-bottom: 1px solid #f1f5f9; margin: 0;
+}
+
+table { width: 100%; border-collapse: collapse; }
+th { background: #f8fafc; padding: 10px 14px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; text-align: left; border-bottom: 1px solid #e2e8f0; }
+td { padding: 11px 14px; font-size: 0.83rem; color: #475569; border-bottom: 1px solid #f8fafc; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #fafbfd; }
+
+.no-data { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.88rem; }
+
+.leave-status { padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+.approved-status { background: #dcfce7; color: #15803d; }
+.rejected-status { background: #fef2f2; color: #dc2626; }
+.pending-status  { background: #fef9c3; color: #92400e; }
+
+.view-slip-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 10px; background: #fef2f2; color: #dc2626;
+  border: 1px solid #fecaca; border-radius: 8px;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  transition: background 0.2s;
+}
+.view-slip-btn:hover { background: #fee2e2; }
+
+/* Rejection Slip Modal */
+.slip-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+}
+
+.slip-modal {
+  background: #fff; border-radius: 16px;
+  padding: 24px; width: 100%; max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.slip-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.slip-header h3 { font-size: 1.1rem; font-weight: 800; color: #1e293b; margin: 0; }
+
+.slip-body { display: flex; flex-direction: column; gap: 12px; }
+
+.slip-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px; background: #f8fafc;
+  border-radius: 8px; font-size: 0.85rem;
+}
+.slip-row span { color: #64748b; }
+.slip-row strong { color: #1e293b; }
+
+.slip-rejection-reason {
+  background: #fef2f2; border: 1px solid #fecaca;
+  border-radius: 10px; padding: 14px;
+}
+.slip-rejection-reason span { font-size: 0.78rem; font-weight: 700; color: #dc2626; text-transform: uppercase; letter-spacing: 0.5px; }
+.slip-rejection-reason p { margin: 6px 0 0; font-size: 0.88rem; color: #7f1d1d; font-weight: 500; }
+
+.slip-close-btn {
+  width: 100%; margin-top: 20px; padding: 12px;
+  background: #1e293b; color: #fff; border: none;
+  border-radius: 10px; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; transition: background 0.2s;
+}
+.slip-close-btn:hover { background: #0f172a; }
+
+@media (max-width: 480px) {
+  .leave-page { padding: 12px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 769px) {
+  .leave-page { padding: 24px; }
+}
+
+/* ══════════════════════════════════════
+   NEW ADDITIONS — Leave.jsx extra styles
+   ══════════════════════════════════════ */
+
+/* Toast notification */
+.leave-toast {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 9999;
+  padding: 13px 20px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 600;
-  color: #0f172a;
-  margin: 0 0 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  animation: toastIn 0.3s ease;
+}
+.leave-toast-success { background: #22c55e; color: #fff; }
+.leave-toast-error   { background: #ef4444; color: #fff; }
+
+@keyframes toastIn {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
 }
 
-.page-title p {
-  font-size: clamp(12px, 3vw, 14px);
-  color: #64748b;
+/* ── Detail / Slip button in table ── */
+.detail-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 11px;
+  border-radius: 8px;
+  font-size: clamp(11px, 2.5vw, 12px);
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.detail-btn-reject {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+.detail-btn-reject:hover { background: #fecaca; }
+
+.detail-btn-view {
+  background: #f1f5f9;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+.detail-btn-view:hover { background: #e2e8f0; }
+
+/* ── Reason cell — truncated, clickable ── */
+.leave-reason-cell {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #2563eb;
+  font-size: clamp(12px, 3vw, 13px);
+}
+.leave-reason-cell:hover { text-decoration: underline; }
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: clamp(18px, 5vw, 28px);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* Modal header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.modal-header h3 {
+  font-size: clamp(14px, 4vw, 17px);
+  font-weight: 700;
+  color: #0f172a;
   margin: 0;
 }
 
-/* ── Leave form card ── */
-.leave-form-card {
-  background: #ffffff;
-  padding: clamp(14px, 5vw, 28px);
-  border-radius: 16px;
-  border: 0.5px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
-  margin-bottom: clamp(14px, 4vw, 24px);
-  width: 100%;
-  box-sizing: border-box;
+.modal-status {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
 }
 
-.leave-form-card form {
-  display: grid;
-  gap: clamp(12px, 3vw, 18px);
-}
-
-/* ── Form group ── */
-.form-group {
+/* Modal info rows */
+.modal-rows {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
-.form-group label {
-  font-size: clamp(12px, 3vw, 13px);
-  font-weight: 500;
-  color: #475569;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.leave-form-card input,
-.leave-form-card select,
-.leave-form-card textarea {
-  width: 100%;
-  padding: clamp(10px, 3vw, 13px) clamp(12px, 3vw, 14px);
-  border: 0.5px solid rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-  font-size: clamp(13px, 3vw, 14px);
-  color: #0f172a;
+.modal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
   background: #f8fafc;
-  outline: none;
-  box-sizing: border-box;
-  transition: border-color 0.15s, background 0.15s;
-  font-family: inherit;
+  border-radius: 9px;
+  font-size: clamp(12px, 3vw, 13px);
 }
 
-.leave-form-card input:focus,
-.leave-form-card select:focus,
-.leave-form-card textarea:focus {
-  border-color: #2563eb;
-  background: #ffffff;
-}
-
-.leave-form-card textarea {
-  resize: vertical;
-  min-height: 90px;
-}
-
-/* ── Submit button ── */
-.submit-btn {
-  background: #2563eb;
-  color: #ffffff;
-  border: none;
-  padding: clamp(11px, 3vw, 14px) clamp(16px, 4vw, 24px);
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: clamp(13px, 3vw, 14px);
+.modal-row span {
+  color: #64748b;
   font-weight: 500;
-  width: 100%;
-  transition: opacity 0.15s, transform 0.1s;
+  flex-shrink: 0;
 }
 
-.submit-btn:hover  { opacity: 0.87; }
-.submit-btn:active { transform: scale(0.98); }
-
-/* ── History card ── */
-.history-card {
-  background: #ffffff;
-  padding: clamp(14px, 5vw, 28px);
-  border-radius: 16px;
-  border: 0.5px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.history-card h3 {
-  font-size: clamp(14px, 4vw, 17px);
+.modal-row strong {
+  color: #1e293b;
   font-weight: 600;
-  color: #0f172a;
-  margin: 0 0 16px;
+  text-align: right;
+  word-break: break-word;
 }
 
-/* ── Table wrapper — horizontal scroll on small screens ── */
-.history-card {
-  overflow-x: auto;
+/* Rejection reason box */
+.rejection-box {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
 }
 
-.history-card table {
-  width: 100%;
-  min-width: 320px;
-  border-collapse: collapse;
-  font-size: clamp(12px, 3vw, 14px);
-}
-
-.history-card th {
-  padding: clamp(8px, 2.5vw, 12px) clamp(10px, 3vw, 14px);
-  text-align: left;
+.rejection-label {
   font-size: 11px;
-  font-weight: 600;
-  color: #94a3b8;
+  font-weight: 700;
+  color: #dc2626;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
-  white-space: nowrap;
+  margin: 0 0 6px;
 }
 
-.history-card td {
-  padding: clamp(10px, 2.5vw, 14px) clamp(10px, 3vw, 14px);
-  color: #334155;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
-  white-space: nowrap;
-}
-
-.history-card tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.history-card tbody tr:hover td {
-  background: #f8fafc;
-}
-
-/* ── Status badges ── */
-.approved-status,
-.rejected-status,
-.pending-status {
-  display: inline-block;
-  padding: 4px 11px;
-  border-radius: 20px;
-  font-size: clamp(11px, 2.5vw, 12px);
+.rejection-text {
+  font-size: clamp(12px, 3vw, 14px);
+  color: #7f1d1d;
   font-weight: 500;
-  white-space: nowrap;
+  margin: 0;
+  line-height: 1.5;
 }
 
-.approved-status {
-  background: #dcfce7;
-  color: #166534;
+/* Modal close button */
+.modal-close-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
 }
+.modal-close-btn:hover { background: #0f172a; }
 
-.rejected-status {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-.pending-status {
-  background: #fef3c7;
-  color: #92400e;
-}
-
-/* ── 260px ultra-small ── */
+/* ── 260px fallback ── */
 @media (max-width: 320px) {
-  .history-card th,
-  .history-card td {
-    padding: 8px 8px;
-  }
+  .modal-box { padding: 14px; }
+  .modal-row { flex-direction: column; gap: 4px; }
+  .modal-row strong { text-align: left; }
 }

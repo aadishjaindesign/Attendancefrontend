@@ -15,19 +15,20 @@ function History() {
     fetchHistory();
   }, []);
 
-  const fetchHistory = async () => {
+const fetchHistory = async () => {
+  try {
+    const res = await axios.get(
+      `${API_URL}/api/attendance/${user._id}`
+    );
 
-    try {
+    console.log("ATTENDANCE DATA =>", res.data);
 
-     const res = await axios.get(
-  `${API_URL}/api/attendance/${user._id}`
-);
-      setRecords(res.data);
+    setRecords(res.data);
 
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   return (
     <div>
