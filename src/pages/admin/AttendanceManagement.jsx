@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { RefreshCw, Search, Users, Clock, Calendar } from "lucide-react";
 import Spinner from "../../components/Spinner";
 import "../../styles/admin/attendance.css";
 
@@ -7,22 +8,55 @@ const API_URL = "https://attendance-backend-ym0q.onrender.com";
 
 function AttendanceManagement() {
   const [records, setRecords] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [search, setSearch] = useState("");
+  const [filterStatus, setFilterStatus] = useState("All");
 
   useEffect(() => {
     fetchAttendance();
   }, []);
 
-  const fetchAttendance = async () => {
-    setLoading(true);
+  useEffect(() => {
+    applyFilters();
+  }, [records, search, filterStatus]);
+
+  const fetchAttendance = async (isRefresh = false) => {
+    if (isRefresh) setRefreshing(true);
+    else setLoading(true);
     try {
       const res = await axios.get(`${API_URL}/api/admin/attendance`);
-      setRecords(res.data);
+      // Admin ki rows filter out karo
+      const empOnly = res.data.filter(
+        (r) => r.employee?.role !== "admin" && r.employee?.name?.toLowerCase() !== "admin"
+      );
+      setRecords(empOnly);
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
+  };
+
+  const applyFilters = () => {
+    let data = [...records];
+
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      data = data.filter(
+        (r) =>
+          r.employee?.name?.toLowerCase().includes(q) ||
+          r.employee?.department?.toLowerCase().includes(q)
+      );
+    }
+
+    if (filterStatus !== "All") {
+      data = data.filter((r) => r.status === filterStatus);
+    }
+
+    setFiltered(data);
   };
 
   const calculateHours = (checkIn, checkOut) => {
@@ -31,58 +65,170 @@ function AttendanceManagement() {
     return `${diff.toFixed(1)}h`;
   };
 
-  const statusColor = (s) => {
-    if (s === "Present") return "present-status";
-    if (s === "Sunday") return "sunday-status";
-    if (s === "Holiday") return "holiday-status";
-    if (s === "Leave") return "leave-status";
-    return "absent-status";
+  const statusClass = (s) => {
+    if (s === "Present")  return "att-badge att-present";
+    if (s === "Half Day") return "att-badge att-halfday";
+    if (s === "Sunday")   return "att-badge att-sunday";
+    if (s === "Holiday")  return "att-badge att-holiday";
+    if (s === "Leave")    return "att-badge att-leave";
+    return "att-badge att-absent";
   };
 
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "-";
+    const d = new Date(dateStr);
+    return d.toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
+  };
+
+  const statuses = ["All", "Present", "Absent", "Half Day", "Sunday", "Holiday", "Leave"];
+
+  // Summary counts
+  const presentCount = filtered.filter((r) => r.status === "Present").length;
+  const absentCount  = filtered.filter((r) => r.status === "Absent").length;
+  const totalCount   = filtered.length;
+
   return (
-    <div>
-      <div className="page-title">
-        <h2>Attendance Management</h2>
-        <p>Monitor employee attendance records</p>
+    <div className="att-mgmt-root">
+
+      {/* Header */}
+      <div className="att-header">
+        <div>
+          <h2 className="att-title">Attendance Management</h2>
+          <p className="att-sub">Monitor employee attendance records</p>
+        </div>
+        <button
+          className="att-refresh-btn"
+          onClick={() => fetchAttendance(true)}
+          disabled={refreshing}
+        >
+          <RefreshCw size={14} className={refreshing ? "spin" : ""} />
+          {refreshing ? "Refreshing..." : "Refresh"}
+        </button>
       </div>
 
-      <div className="attendance-card">
+      {/* Summary pills */}
+      <div className="att-summary">
+        <div className="sum-pill sum-total">
+          <Users size={14} /> Total: <strong>{totalCount}</strong>
+        </div>
+        <div className="sum-pill sum-present">
+          <Clock size={14} /> Present: <strong>{presentCount}</strong>
+        </div>
+        <div className="sum-pill sum-absent">
+          <Calendar size={14} /> Absent: <strong>{absentCount}</strong>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="att-filters">
+        <div className="att-search-wrap">
+          <Search size={15} className="att-search-icon" />
+          <input
+            className="att-search"
+            placeholder="Search employee or department..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+
+        <div className="att-status-filters">
+          {statuses.map((s) => (
+            <button
+              key={s}
+              className={`sf-btn ${filterStatus === s ? "sf-active" : ""}`}
+              onClick={() => setFilterStatus(s)}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Table Card */}
+      <div className="att-card">
         {loading ? (
-          <div className="table-loading"><Spinner size={30} /><span>Loading...</span></div>
+          <div className="att-loading">
+            <Spinner size={32} color="#e11d48" />
+            <span>Loading records...</span>
+          </div>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Employee</th>
-                <th>Date</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Hours</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {records.length === 0 ? (
-                <tr><td colSpan="6" className="no-data">No Attendance Records Found</td></tr>
-              ) : (
-                records.map((item) => (
-                  <tr key={item._id}>
-                    <td>
-                      <div className="att-emp-info">
-                        <span className="att-emp-name">{item.employee?.name}</span>
-                        <span className="att-emp-dept">{item.employee?.department}</span>
-                      </div>
-                    </td>
-                    <td>{item.date}</td>
-                    <td>{item.checkIn ? new Date(item.checkIn).toLocaleTimeString() : "-"}</td>
-                    <td>{item.checkOut ? new Date(item.checkOut).toLocaleTimeString() : "-"}</td>
-                    <td>{calculateHours(item.checkIn, item.checkOut)}</td>
-                    <td className={statusColor(item.status)}>{item.status}</td>
+          <>
+            {/* Desktop Table */}
+            <div className="att-table-wrap">
+              <table className="att-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Employee</th>
+                    <th>Date</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Hours</th>
+                    <th>Status</th>
                   </tr>
+                </thead>
+                <tbody>
+                  {filtered.length === 0 ? (
+                    <tr>
+                      <td colSpan="7" className="no-data">No attendance records found</td>
+                    </tr>
+                  ) : (
+                    filtered.map((item, i) => (
+                      <tr key={item._id}>
+                        <td className="row-num">{i + 1}</td>
+                        <td>
+                          <div className="emp-cell">
+                            <span className="emp-cell-name">{item.employee?.name}</span>
+                            {item.employee?.department && (
+                              <span className="emp-cell-dept">{item.employee.department}</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="date-cell">{item.date || formatDate(item.createdAt)}</td>
+                        <td className="time-cell">
+                          {item.checkIn ? new Date(item.checkIn).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) : "-"}
+                        </td>
+                        <td className="time-cell">
+                          {item.checkOut ? new Date(item.checkOut).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) : "-"}
+                        </td>
+                        <td className="hours-cell">{calculateHours(item.checkIn, item.checkOut)}</td>
+                        <td>
+                          <span className={statusClass(item.status)}>{item.status}</span>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Cards */}
+            <div className="att-mobile-list">
+              {filtered.length === 0 ? (
+                <p className="no-data">No attendance records found</p>
+              ) : (
+                filtered.map((item) => (
+                  <div key={item._id} className="att-mobile-card">
+                    <div className="amc-row1">
+                      <div className="emp-cell">
+                        <span className="emp-cell-name">{item.employee?.name}</span>
+                        {item.employee?.department && (
+                          <span className="emp-cell-dept">{item.employee.department}</span>
+                        )}
+                      </div>
+                      <span className={statusClass(item.status)}>{item.status}</span>
+                    </div>
+                    <div className="amc-row2">
+                      <span>📅 {item.date || formatDate(item.createdAt)}</span>
+                      <span>In: {item.checkIn ? new Date(item.checkIn).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) : "-"}</span>
+                      <span>Out: {item.checkOut ? new Date(item.checkOut).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }) : "-"}</span>
+                      <span>{calculateHours(item.checkIn, item.checkOut)}</span>
+                    </div>
+                  </div>
                 ))
               )}
-            </tbody>
-          </table>
+            </div>
+          </>
         )}
       </div>
     </div>
